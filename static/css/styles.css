@@ -588,7 +588,6 @@ a {
     }
 }
 
-/* Coluna esquerda — alinhada à esquerda */
 .rodape-col--identidade {
     display: flex;
     flex-direction: column;
@@ -607,7 +606,6 @@ a {
     color: var(--branco);
 }
 
-/* Coluna central — centralizada */
 .rodape-col--social {
     display: flex;
     flex-direction: column;
@@ -625,7 +623,6 @@ a {
     opacity: .8;
 }
 
-/* Grade 3x2 de ícones quadrados */
 .rodape-social-icons {
     display: grid;
     grid-template-columns: repeat(3, 44px);
@@ -682,77 +679,14 @@ a {
     height: 14px;
 }
 
-/* Coluna direita — alinhada à direita / esquerda no mobile */
-.rodape-col--contato {
+.rodape-col--links {
     display: flex;
     flex-direction: column;
-    gap: .75rem;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.rodape-form {
-    display: flex;
-    flex-direction: column;
-    gap: .55rem;
-    width: 100%;
-}
-
-.rodape-input,
-.rodape-textarea {
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 8px;
-    color: var(--branco);
-    font-size: .88rem;
-    padding: .6rem .85rem;
-    font-family: inherit;
-    transition: border-color .2s, background .2s;
-    outline: none;
-    resize: vertical;
-    width: 100%;
-}
-
-.rodape-input::placeholder,
-.rodape-textarea::placeholder {
-    color: rgba(255,255,255,.45);
-}
-
-.rodape-input:focus,
-.rodape-textarea:focus {
-    border-color: var(--coral);
-    background: rgba(255,255,255,.15);
-}
-
-.rodape-btn-enviar {
-    display: inline-flex;
+    gap: .5rem;
     align-items: center;
-    justify-content: center;
-    gap: .45rem;
-    background: var(--coral);
-    color: var(--branco);
-    border: none;
-    border-radius: 50px;
-    padding: .65rem 1.4rem;
-    font-size: .9rem;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background .2s, transform .15s;
-    align-self: flex-start;
+    text-align: center;
 }
 
-.rodape-btn-enviar:hover {
-    background: #c9603d;
-    transform: translateY(-2px);
-}
-
-.rodape-btn-enviar i[data-lucide] {
-    width: 16px;
-    height: 16px;
-}
-
-/* Barra inferior */
 .rodape-bottom {
     border-top: 1px solid rgba(255,255,255,.15);
     padding: 1rem 0 1.25rem;
