@@ -2,7 +2,7 @@
 window.addEventListener('load', () => {
     const barra = document.getElementById('barra');
     const valor = Number(barra.dataset.valor || 0);
-    const meta = 100.000;
+    const meta = 100_000;
     const percentual = meta > 0 ? Math.round((valor / meta) * 100) : 0;
 
     document.getElementById('valor-arrecadado').textContent =
