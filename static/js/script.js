@@ -1,12 +1,14 @@
 /* Anima barra de progresso ao carregar */
 window.addEventListener('load', () => {
     const barra = document.getElementById('barra');
-    const meta = parseInt(barra.dataset.meta, 10);
-    const valor = Math.round((meta / 100) * 500000);
+    const valor = Number(barra.dataset.valor || 0);
+    const meta = 100.000;
+    const percentual = meta > 0 ? Math.round((valor / meta) * 100) : 0;
+
     document.getElementById('valor-arrecadado').textContent =
         'R$ ' + valor.toLocaleString('pt-BR');
-    document.getElementById('pct-label').textContent = meta + '% concluído';
-    setTimeout(() => { barra.style.width = meta + '%'; }, 300);
+    document.getElementById('pct-label').textContent = percentual + '% concluído';
+    setTimeout(() => { barra.style.width = Math.min(percentual, 100) + '%'; }, 300);
 });
 
 /* Copiar chave Pix */
