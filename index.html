@@ -5,45 +5,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Corrente do Bem | Luz da Esperança</title>
-    <meta name="description"
-        content="Campanha Corrente do Bem – ajude a construir a sede, escola e posto de saúde das Obras Sociais Luz da Esperança." />
     <link rel="stylesheet" href="./static/css/styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 
 <body>
     <header class="cabecalho">
         <div class="container cabecalho-inner">
-            <img src="./static/img/logo-luz.png" alt="Luz da Esperança"
-                class="cabecalho-logo" />
-            <a href="#doe-agora" class="botao-doe-header">💛 Quero Ajudar</a>
+            <img src="./static/img/logo-luz.png" alt="Luz da Esperança" class="cabecalho-logo" />
+            <a href="#doe-agora" class="botao-doe-header icon-btn">
+                <i data-lucide="heart"></i> Quero Ajudar
+            </a>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <img src="./static/img/logo-luz.png" alt="Luz da Esperança"
-                class="hero-logo" />
+            <img src="./static/img/logo-luz.png" alt="Luz da Esperança" class="hero-logo" />
             <h1 class="hero-titulo">Faça parte da<br><span>Corrente do Bem</span></h1>
             <p class="hero-subtitulo">
                 Juntos, vamos construir a sede, uma escola e um posto de saúde para as <strong>Obras Sociais Luz da
                     Esperança</strong> — transformando vidas e iluminando comunidades.
             </p>
             <div class="grupo-botoes">
-                <a href="#doe-agora" class="botao-primario">💛 Quero Contribuir</a>
+                <a href="#doe-agora" class="botao-primario icon-btn">
+                    <i data-lucide="heart"></i> Quero Contribuir
+                </a>
                 <a href="#sobre" class="botao-secundario">Saiba mais</a>
             </div>
 
             <div class="progresso-wrapper">
                 <div class="progresso-numeros">
                     <span>Arrecadado até agora<br><strong id="valor-arrecadado">R$ 0</strong></span>
-                    <span style="text-align:right;">Meta<br><strong>R$ 500.000</strong></span>
+                    <span class="meta">Meta<br><strong>R$ 500.000</strong></span>
                 </div>
                 <div class="barra-fundo">
                     <div class="barra-preenchida" id="barra" data-meta="1"></div>
                 </div>
                 <div class="progresso-info">
                     <span id="pct-label">1% concluído</span>
-                    <span>🤝 <strong>26</strong> apoiadores</span>
+                    <span><i data-lucide="users"></i> <strong>26</strong> apoiadores</span>
                 </div>
             </div>
         </div>
@@ -58,13 +59,13 @@
                 centenas de famílias.</p>
             <div class="sobre-grid">
                 <div class="sobre-card">
-                    <h3 style="color:var(--marrom);margin-bottom:.4rem;">🌱 Quem Somos</h3>
+                    <h3><i data-lucide="sprout"></i> Quem Somos</h3>
                     <p>O Centro Espírita e Obras Sociais <strong>Luz da Esperança</strong> é uma instituição sem fins
                         lucrativos dedicada ao apoio comunitário, à educação e ao bem-estar social, guiada pelos
                         princípios do amor e da fraternidade.</p>
                 </div>
-                <div class="sobre-card" style="border-left-color:var(--verde);">
-                    <h3 style="color:var(--marrom);margin-bottom:.4rem;">🎯 Nossa Missão</h3>
+                <div class="sobre-card sobre-card--missao">
+                    <h3><i data-lucide="target"></i> Nossa Missão</h3>
                     <p>Mobilizar a sociedade em torno de um objetivo comum: construir uma infraestrutura que sirva de
                         base para o amparo, a educação e a saúde da comunidade, com total transparência no uso dos
                         recursos.</p>
@@ -81,20 +82,20 @@
                 pilares essenciais para a comunidade.</p>
             <div class="pilares-grid">
                 <div class="pilar-card pilar-sede">
-                    <div class="pilar-icone">🏢</div>
+                    <div class="pilar-icone"><i data-lucide="building-2"></i></div>
                     <div class="pilar-titulo">Sede das Obras Sociais</div>
                     <div class="pilar-desc">O coração da instituição: espaço de acolhimento, administração, oficinas
                         sociais e atendimento à comunidade, funcionando como centro de referência para quem precisa.
                     </div>
                 </div>
                 <div class="pilar-card pilar-escola">
-                    <div class="pilar-icone">📚</div>
+                    <div class="pilar-icone"><i data-lucide="graduation-cap"></i></div>
                     <div class="pilar-titulo">Escola Comunitária</div>
                     <div class="pilar-desc">Um espaço dedicado à educação infantojuvenil, promovendo a transformação
                         social através do conhecimento, do desenvolvimento humano e da formação de cidadãos.</div>
                 </div>
                 <div class="pilar-card pilar-saude">
-                    <div class="pilar-icone">🏥</div>
+                    <div class="pilar-icone"><i data-lucide="cross"></i></div>
                     <div class="pilar-titulo">Posto de Saúde</div>
                     <div class="pilar-desc">Unidade de atendimento básico para garantir cuidados de saúde primários,
                         prevenção e bem-estar para as famílias assistidas pela instituição.</div>
@@ -116,7 +117,7 @@
         Ex: https://www.youtube.com/embed/dQw4w9WgXcQ
       -->
                 <div class="video-placeholder">
-                    <span>▶️</span>
+                    <i data-lucide="play-circle"></i>
                     <p>Insira aqui o vídeo da campanha.<br>
                         Substitua esta área por um <code>&lt;iframe&gt;</code> do YouTube ou Vimeo.</p>
                     <small>Formato: <code>https://www.youtube.com/embed/ID_DO_VIDEO</code></small>
@@ -152,15 +153,15 @@
                     <div>
                         <div class="passo-titulo">Realize sua doação</div>
                         <div class="passo-desc">Utilize os dados bancários ou a chave Pix disponibilizados abaixo para
-                            realizar sua contribuição de forma rápida e segura.</div>
+                            realizar sua transferência com segurança e rapidez.</div>
                     </div>
                 </div>
                 <div class="passo">
                     <div class="passo-numero">3</div>
                     <div>
-                        <div class="passo-titulo">Compartilhe a campanha</div>
-                        <div class="passo-desc">Divulgue para amigos e familiares. Cada compartilhamento amplia a
-                            Corrente do Bem e nos aproxima da meta.</div>
+                        <div class="passo-titulo">Compartilhe a Corrente</div>
+                        <div class="passo-desc">Divulgue para amigos e família! Cada compartilhamento nos ajuda a chegar
+                            mais longe e engajar mais pessoas nessa causa.</div>
                     </div>
                 </div>
                 <div class="passo">
@@ -178,30 +179,40 @@
     <section class="secao" id="doe-agora">
         <div class="container">
             <div class="doe-container">
-                <h2 class="titulo-secao">💛 Faça sua Doação</h2>
-                <div class="divisor" style="background:linear-gradient(90deg,var(--laranja),#fff8)"></div>
+                <h2 class="titulo-secao icon-btn">
+                    <i data-lucide="hand-heart"></i> Faça sua Doação
+                </h2>
+                <div class="divisor"></div>
                 <p class="subtitulo-secao">Sua contribuição transforma vidas. Doe o quanto puder — cada real conta!</p>
 
                 <div class="chave-pix-box">
                     <div class="chave-label">Chave Pix</div>
                     <div class="chave-valor">
                         <span id="chave-pix">luzesperanca@email.com.br</span>
-                        <button class="btn-copiar" onclick="copiarChave()">📋 Copiar</button>
+                        <button class="btn-copiar icon-btn" onclick="copiarChave()">
+                            <i data-lucide="copy"></i> Copiar
+                        </button>
                     </div>
                 </div>
 
                 <div class="dados-bancarios">
-                    <strong style="color:#fff;font-size:.92rem;">📌 Dados Bancários</strong><br>
-                    Banco: <strong style="color:#fff;">— inserir banco —</strong><br>
-                    Agência: <strong style="color:#fff;">— inserir —</strong> &nbsp;|&nbsp; Conta: <strong
-                        style="color:#fff;">— inserir —</strong><br>
-                    CNPJ/CPF: <strong style="color:#fff;">— inserir —</strong><br>
-                    Favorecido: <strong style="color:#fff;">Obras Sociais Luz da Esperança</strong>
+                    <span class="icon-info">
+                        <i data-lucide="landmark"></i>
+                        <strong class="label-dados">Dados Bancários</strong>
+                    </span><br>
+                    Banco: <strong>— inserir banco —</strong><br>
+                    Agência: <strong>— inserir —</strong> &nbsp;|&nbsp; Conta: <strong>— inserir —</strong><br>
+                    CNPJ/CPF: <strong>— inserir —</strong><br>
+                    Favorecido: <strong>Obras Sociais Luz da Esperança</strong>
                 </div>
 
-                <a href="#" class="botao-doe-grande">💛 Doe Agora via Pix</a>
-                <p style="font-size:.82rem;opacity:.6;margin-top:.75rem;">Após a doação, envie o comprovante pelo
-                    WhatsApp ou e-mail para que possamos registrar sua participação. 💚</p>
+                <a href="#" class="botao-doe-grande icon-btn">
+                    <i data-lucide="qr-code"></i> Doe Agora via Pix
+                </a>
+                <p class="comprovante-nota">Após a doação, envie o comprovante pelo
+                    WhatsApp ou e-mail para que possamos registrar sua participação.
+                    <i data-lucide="check-circle"></i>
+                </p>
             </div>
         </div>
     </section>
@@ -305,17 +316,20 @@
         <p><strong>Centro Espírita e Obras Sociais Luz da Esperança</strong></p>
         <p>Campanha <strong>Corrente do Bem</strong> — Construindo futuros com amor e solidariedade.</p>
         <div class="rodape-links">
-            <a href="mailto:luzesperanca@email.com.br">✉️ E-mail</a>
-            <a href="#">📱 WhatsApp</a>
-            <a href="#">📸 Instagram</a>
-            <a href="#">👍 Facebook</a>
+            <a href="mailto:luzesperanca@email.com.br"><i data-lucide="mail"></i> E-mail</a>
+            <a href="#"><i data-lucide="message-circle"></i> WhatsApp</a>
+            <a href="#"><i data-lucide="instagram"></i> Instagram</a>
+            <a href="#"><i data-lucide="facebook"></i> Facebook</a>
         </div>
-        <p style="margin-top:1rem;font-size:.8rem;opacity:.5;">© 2025 Obras Sociais Luz da Esperança. Todos os direitos
-            reservados.</p>
+        <p class="rodape-copy">&copy; 2026 Obras Sociais Luz da Esperança. Todos os direitos reservados.</p>
     </footer>
 
-    <div class="toast" id="toast">✅ Chave Pix copiada!</div>
+    <div class="toast" id="toast">
+        <span class="toast-inner"><i data-lucide="check-circle"></i> Chave Pix copiada!</span>
+    </div>
+
     <script src="./static/js/script.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>
