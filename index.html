@@ -12,7 +12,7 @@
 <body>
     <header class="cabecalho">
         <div class="container cabecalho-inner">
-            <img src="./static/img/logo-luz.png" alt="Luz da Esperança" class="cabecalho-logo" />
+            <img src="./static/img/logo/logo-luz.png" alt="Luz da Esperança" class="cabecalho-logo" />
             <a href="#doe-agora" class="botao-doe-header icon-btn">
                 <i data-lucide="heart"></i> Quero Ajudar
             </a>
@@ -21,7 +21,7 @@
 
     <section class="hero">
         <div class="container">
-            <img src="./static/img/logo-luz.png" alt="Luz da Esperança" class="hero-logo" />
+            <img src="./static/img/logo/logo-luz.png" alt="Luz da Esperança" class="hero-logo" />
             <h1 class="hero-titulo">Faça parte da<br><span>Corrente do Bem</span></h1>
             <p class="hero-subtitulo">
                 Juntos, vamos construir a sede, uma escola e um posto de saúde para as <strong>Obras Sociais Luz da
@@ -312,16 +312,70 @@
     </section>
 
     <footer class="rodape">
-        <img src="./static/img/logo-luz.png" alt="Luz da Esperança" class="rodape-logo" />
-        <p><strong>Centro Espírita e Obras Sociais Luz da Esperança</strong></p>
-        <p>Campanha <strong>Corrente do Bem</strong> — Construindo futuros com amor e solidariedade.</p>
-        <div class="rodape-links">
-            <a href="mailto:luzesperanca@email.com.br"><i data-lucide="mail"></i> E-mail</a>
-            <a href="#"><i data-lucide="message-circle"></i> WhatsApp</a>
-            <a href="#"><i data-lucide="instagram"></i> Instagram</a>
-            <a href="#"><i data-lucide="facebook"></i> Facebook</a>
+        <div class="container">
+            <div class="rodape-grid">
+
+                <!-- COLUNA ESQUERDA: identidade -->
+                <div class="rodape-col rodape-col--identidade">
+                    <img src="./static/img/logo/logo-luz.png" alt="Luz da Esperança" class="rodape-logo" />
+                    <p><strong>Centro Espírita e Obras Sociais Luz da Esperança</strong></p>
+                    <p>Campanha <strong>Corrente do Bem</strong> — Construindo futuros com amor e solidariedade.</p>
+                </div>
+
+                <!-- COLUNA CENTRAL: redes sociais + site oficial -->
+                <div class="rodape-col rodape-col--social">
+                    <h4 class="rodape-col-titulo">Nos acompanhe</h4>
+                    <div class="rodape-social-icons">
+                        <a href="#" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                            <img src="/static/img/icones/ig.svg" alt="instagram" class="social-icon" />
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" class="social-link" title="Facebook">
+                            <img src="/static/img/icones/fb.svg" alt="facebook" class="social-icon" />
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" class="social-link" title="WhatsApp">
+                            <img src="/static/img/icones/wpp.svg" alt="whatsapp" class="social-icon" />
+                        </a>
+                        <!-- Linha 2: YouTube, TikTok, E-mail -->
+                        <a href="#" target="_blank" rel="noopener" class="social-link" title="YouTube">
+                            <img src="/static/img/icones/yt.svg" alt="youtube" class="social-icon" />
+                        </a>
+                        <a href="#" target="_blank" rel="noopener" class="social-link" title="Site">
+                            <img src="/static/img/icones/site.svg" alt="Site" class="social-icon" />
+                        </a>
+                        <a href="mailto:luzesperanca@email.com.br" class="social-link" title="E-mail">
+                            <img src="/static/img/icones/email.svg" alt="e-mail" class="social-icon" />
+                        </a>
+                    </div>
+                    <a href="https://www.luzesperanca.org.br" target="_blank" rel="noopener" class="rodape-site-oficial">
+                        <i data-lucide="external-link"></i> Site Oficial das Obras Sociais
+                    </a>
+                </div>
+
+                <!-- COLUNA DIREITA: formulário de contato -->
+                <div class="rodape-col rodape-col--contato">
+                    <h4 class="rodape-col-titulo">Fale Conosco</h4>
+                    <form class="rodape-form" action="mailto:serejodev@gmail.com" method="post" enctype="text/plain">
+                        <input type="text" name="nome" placeholder="Seu nome" class="rodape-input" required />
+                        <input type="email" name="email" placeholder="Seu e-mail" class="rodape-input" required />
+                        <textarea name="mensagem" placeholder="Sua mensagem..." class="rodape-textarea" rows="3" required></textarea>
+                        <button type="submit" class="rodape-btn-enviar">
+                            <i data-lucide="send"></i> Enviar mensagem
+                        </button>
+                    </form>
+                </div>
+
+            </div><!-- /rodape-grid -->
+        </div><!-- /container -->
+
+        <!-- Barra de copyright -->
+        <div class="rodape-bottom">
+            <div class="container rodape-bottom-inner">
+                <span class="rodape-copy">&copy; 2026 Obras Sociais Luz da Esperança. Todos os direitos reservados.</span>
+                <span class="rodape-devs">
+                    Desenvolvido por <a href="#" target="_blank" rel="noopener">Dev 1</a> e <a href="#" target="_blank" rel="noopener">Dev 2</a>
+                </span>
+            </div>
         </div>
-        <p class="rodape-copy">&copy; 2026 Obras Sociais Luz da Esperança. Todos os direitos reservados.</p>
     </footer>
 
     <div class="toast" id="toast">
@@ -331,5 +385,4 @@
     <script src="./static/js/script.js"></script>
     <script>lucide.createIcons();</script>
 </body>
-
 </html>
