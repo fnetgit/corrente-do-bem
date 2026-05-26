@@ -568,16 +568,13 @@ a {
 .rodape {
     background: var(--marrom);
     color: rgba(255, 255, 255, .75);
-    font-size: .88rem;
 }
-
-/* OVERRIDE — rewrite completo do footer abaixo */
 
 .rodape-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 3rem 0 2.5rem;
+    padding: 1.5rem 0 2.5rem;
 }
 
 @media (min-width: 720px) {
@@ -597,7 +594,7 @@ a {
 }
 
 .rodape-logo {
-    height: 60px;
+    height: 80px;
     width: auto;
     object-fit: contain;
 }
