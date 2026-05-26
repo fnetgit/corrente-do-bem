@@ -24,6 +24,28 @@ function showToast() {
     setTimeout(() => toastElement.classList.remove('visible'), 2800);
 }
 
+/* Menu sanduíche */
+(function () {
+    const toggle = document.getElementById('nav-toggle');
+    const menu   = document.getElementById('nav-menu');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('nav--open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+
+    /* Fecha o menu ao clicar em um link */
+    menu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('nav--open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Abrir menu');
+        });
+    });
+})();
+
 /* FAQ acordeão */
 function toggleFaq(button) {
     const answer = button.nextElementSibling;
