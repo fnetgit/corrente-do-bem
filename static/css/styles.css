@@ -574,16 +574,21 @@ a {
 .rodape {
     background: var(--marrom);
     color: rgba(255, 255, 255, .75);
-    font-size: .88rem;
 }
-
-/* OVERRIDE — rewrite completo do footer abaixo */
 
 .rodape-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 3rem 0 2.5rem;
+    padding: 1.5rem 0 2.5rem;
+}
+
+.rodape-col--identidade {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    align-items: center;
+    text-align: center;
 }
 
 @media (min-width: 720px) {
@@ -592,18 +597,16 @@ a {
         gap: 4rem;
         align-items: start;
     }
+
+    .rodape-col--identidade {
+        align-items: flex-start;
+        text-align: left;
+    }
 }
 
-.rodape-col--identidade {
-    display: flex;
-    flex-direction: column;
-    gap: .65rem;
-    align-items: flex-start;
-    text-align: left;
-}
 
 .rodape-logo {
-    height: 60px;
+    height: 80px;
     width: auto;
     object-fit: contain;
 }
@@ -658,16 +661,16 @@ a {
 
 .social-link:hover {
     transform: translateY(-3px);
-    background: rgba(255,255,255,.22);
+    background: rgba(255, 255, 255, .22);
 }
 
 .rodape-site-oficial {
     display: inline-flex;
     align-items: center;
     gap: .4rem;
-    color: rgba(255,255,255,.65);
+    color: rgba(255, 255, 255, .65);
     font-size: .83rem;
-    border: 1px solid rgba(255,255,255,.25);
+    border: 1px solid rgba(255, 255, 255, .25);
     border-radius: 50px;
     padding: .4rem 1rem;
     transition: color .2s, border-color .2s;
@@ -694,10 +697,10 @@ a {
 }
 
 .rodape-bottom {
-    border-top: 1px solid rgba(255,255,255,.15);
+    border-top: 1px solid rgba(255, 255, 255, .15);
     padding: 1rem 0 1.25rem;
     font-size: .8rem;
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
     text-align: center;
 }
 
@@ -709,16 +712,16 @@ a {
 }
 
 .rodape-copy {
-    color: rgba(255,255,255,.55);
+    color: rgba(255, 255, 255, .55);
 }
 
 .rodape-devs {
-    color: rgba(255,255,255,.4);
+    color: rgba(255, 255, 255, .4);
     font-size: .78rem;
 }
 
 .rodape-devs a {
-    color: rgba(255,255,255,.65);
+    color: rgba(255, 255, 255, .65);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color .2s;
