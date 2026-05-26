@@ -4,10 +4,12 @@ window.addEventListener('load', () => {
     const valor = Number(barra.dataset.valor || 0);
     const meta = 100_000;
     const percentual = meta > 0 ? Math.round((valor / meta) * 100) : 0;
+    const currentYearElement = document.getElementById('current-year');
 
     document.getElementById('valor-arrecadado').textContent =
         'R$ ' + valor.toLocaleString('pt-BR');
     document.getElementById('pct-label').textContent = percentual + '% concluído';
+    if (currentYearElement) currentYearElement.textContent = new Date().getFullYear();
     setTimeout(() => { barra.style.width = Math.min(percentual, 100) + '%'; }, 300);
 });
 
