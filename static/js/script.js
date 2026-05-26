@@ -1,43 +1,43 @@
-/* Anima barra de progresso ao carregar */
+/* Anima a barra de progresso ao carregar */
 window.addEventListener('load', () => {
-    const barra = document.getElementById('barra');
-    const valor = Number(barra.dataset.valor || 0);
-    const meta = 100_000;
-    const percentual = meta > 0 ? Math.round((valor / meta) * 100) : 0;
+    const progressBar = document.getElementById('progress-bar');
+    const raisedAmount = Number(progressBar.dataset.value || 0);
+    const goalAmount = 100_000;
+    const progressPercentage = goalAmount > 0 ? Math.round((raisedAmount / goalAmount) * 100) : 0;
     const currentYearElement = document.getElementById('current-year');
 
-    document.getElementById('valor-arrecadado').textContent =
-        'R$ ' + valor.toLocaleString('pt-BR');
-    document.getElementById('pct-label').textContent = percentual + '% concluído';
+    document.getElementById('raised-amount').textContent =
+        'R$ ' + raisedAmount.toLocaleString('pt-BR');
+    document.getElementById('progress-label').textContent = progressPercentage + '% concluído';
     if (currentYearElement) currentYearElement.textContent = new Date().getFullYear();
-    setTimeout(() => { barra.style.width = Math.min(percentual, 100) + '%'; }, 300);
+    setTimeout(() => { progressBar.style.width = Math.min(progressPercentage, 100) + '%'; }, 300);
 });
 
-/* Copiar chave Pix */
-function copiarChave() {
-    const chave = document.getElementById('chave-pix').textContent.trim();
-    navigator.clipboard.writeText(chave).then(() => mostrarToast());
+/* Copia a chave Pix */
+function copyPixKey() {
+    const pixKey = document.getElementById('pix-key').textContent.trim();
+    navigator.clipboard.writeText(pixKey).then(() => showToast());
 }
-function mostrarToast() {
-    const t = document.getElementById('toast');
-    t.classList.add('visivel');
-    setTimeout(() => t.classList.remove('visivel'), 2800);
+function showToast() {
+    const toastElement = document.getElementById('toast');
+    toastElement.classList.add('visible');
+    setTimeout(() => toastElement.classList.remove('visible'), 2800);
 }
 
 /* FAQ acordeão */
-function toggleFaq(btn) {
-    const resposta = btn.nextElementSibling;
-    const aberto = btn.classList.contains('aberto');
+function toggleFaq(button) {
+    const answer = button.nextElementSibling;
+    const isOpen = button.classList.contains('open');
 
-    /* Fecha todos */
-    document.querySelectorAll('.faq-pergunta.aberto').forEach(b => {
-        b.classList.remove('aberto');
-        b.nextElementSibling.classList.remove('aberto');
+    /* Fecha todos os itens */
+    document.querySelectorAll('.faq-question.open').forEach(faqButton => {
+        faqButton.classList.remove('open');
+        faqButton.nextElementSibling.classList.remove('open');
     });
 
-    /* Abre o clicado (se estava fechado) */
-    if (!aberto) {
-        btn.classList.add('aberto');
-        resposta.classList.add('aberto');
+    /* Abre o item clicado se ele estava fechado */
+    if (!isOpen) {
+        button.classList.add('open');
+        answer.classList.add('open');
     }
 }
