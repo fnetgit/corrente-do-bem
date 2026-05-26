@@ -87,6 +87,12 @@ a {
     margin: .6rem auto 1.2rem;
 }
 
+.secao-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
 /* ── Cabeçalho fixo ── */
 .cabecalho {
     position: sticky;
@@ -747,6 +753,16 @@ a {
 
 /* ── Responsivo ── */
 @media (min-width: 600px) {
+    .passos-lista {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 960px;
+    }
+
+    .passo {
+        height: 100%;
+    }
+
     .pilares-grid {
         grid-template-columns: repeat(2, 1fr);
     }
