@@ -270,7 +270,8 @@
         <div class="pix-key-box">
           <div class="pix-key-label">Chave Pix</div>
           <div class="pix-key-value">
-            <span id="pix-key">00020126550014br.gov.bcb.pix0114184633660001620215Corrente_do_Bem5204000053039865802BR5925OBRAS_SOCIAIS_LUZ_DA_ESPE6008PARNAIBA62170513CorrenteDoBem6304314F</span>
+            <span
+              id="pix-key">00020126550014br.gov.bcb.pix0114184633660001620215Corrente_do_Bem5204000053039865802BR5925OBRAS_SOCIAIS_LUZ_DA_ESPE6008PARNAIBA62170513CorrenteDoBem6304314F</span>
             <button class="copy-button icon-btn" onclick="copyPixKey()">
               <i data-lucide="copy"></i> Copiar
             </button>
@@ -282,15 +283,15 @@
             <i data-lucide="landmark"></i>
             <strong class="details-label">Dados Bancários</strong> </span><br />
           Banco: <strong>Banco do Brasil</strong><br />
-          Agência: <strong>23-X</strong> &nbsp;|&nbsp; Conta:
+          Agência: <strong>23-X</strong> | Conta:
           <strong>45684-5</strong><br />
           CNPJ: <strong>18.463.366/0001-62</strong><br />
           Favorecido: <strong>Obras Sociais Luz da Esperança</strong>
         </div>
 
-        <a href="#" class="large-donate-button icon-btn">
-          <i data-lucide="qr-code"></i> Doe Agora via Pix
-        </a>
+        <button class="large-donate-button icon-btn" onclick="openQrModal()">
+          <i data-lucide="qr-code"></i> Ler QR Code
+        </button>
       </div>
     </div>
   </section>
@@ -473,6 +474,15 @@
       </div>
     </div>
   </footer>
+
+  <div class="qr-modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
+    <div class="qr-modal-box">
+      <button class="qr-modal-close" onclick="closeQrModal()" aria-label="Fechar">&times;</button>
+      <h3 class="qr-modal-title">Escaneie o QR Code</h3>
+      <img src="./static/img/qrcode/qrcode-luz.jpeg" alt="QR Code Pix – Obras Sociais Luz da Esperança" class="qr-modal-img" />
+      <p class="qr-modal-hint">Aponte a câmera do seu celular para o código acima.</p>
+    </div>
+  </div>
 
   <div class="toast" id="toast">
     <span class="toast-inner"><i data-lucide="check-circle"></i> Chave Pix copiada!</span>
