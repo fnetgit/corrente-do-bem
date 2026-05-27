@@ -46,6 +46,20 @@ function showToast() {
     });
 })();
 
+/* Modal QR Code */
+function openQrModal() {
+    document.getElementById('qr-modal').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+}
+function closeQrModal(event) {
+    if (event && event.target !== document.getElementById('qr-modal') && !event.target.classList.contains('qr-modal-close')) return;
+    document.getElementById('qr-modal').classList.remove('visible');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeQrModal({ target: document.getElementById('qr-modal') });
+});
+
 /* FAQ acordeão */
 function toggleFaq(button) {
     const answer = button.nextElementSibling;

@@ -244,8 +244,15 @@ a {
 }
 
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .nav.nav--open .nav-list {
@@ -652,6 +659,7 @@ a {
     margin-top: 1.5rem;
     box-shadow: 0 6px 22px rgba(224, 117, 83, .4);
     transition: background .2s, transform .15s;
+    cursor: pointer;
 }
 
 .large-donate-button:hover {
@@ -1092,4 +1100,70 @@ a {
     height: 13px;
     vertical-align: middle;
     color: var(--green);
+}
+
+/* ── Modal QR Code ── */
+.qr-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.qr-modal-overlay.visible {
+    display: flex;
+}
+
+.qr-modal-box {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem 1.5rem;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.qr-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #555;
+}
+
+.qr-modal-close:hover {
+    color: #000;
+}
+
+.qr-modal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #1a1a1a;
+}
+
+.qr-modal-img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    align-items: baseline;
+    margin: 0 auto;
+}
+
+.qr-modal-hint {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #666;
 }
