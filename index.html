@@ -1,187 +1,210 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corrente do Bem | Luz da Esperança</title>
+    <link rel="stylesheet" href="./static/css/styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corrente do Bem | Luz da Esperança</title>
-  <link rel="stylesheet" href="./static/css/styles.css" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-</head>
-
-<body>
-  <header class="header">
-    <div class="nav-container">
-      <a href="#home" class="header-logo-link">
-        <img src="./static/img/logo/logo-luz.png" alt="Luz da Esperança" class="header-logo" />
-      </a>
-
-      <nav class="nav" id="nav-menu" aria-label="Menu principal">
-        <ul class="nav-list">
-          <li><a href="#home" class="nav-link">Início</a></li>
-          <li><a href="#about" class="nav-link">Sobre</a></li>
-          <li><a href="#pillars" class="nav-link">O que construímos</a></li>
-          <li><a href="#video" class="nav-link">Nossa História</a></li>
-          <li><a href="#how-to-help" class="nav-link">Como Participar</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="#donate-now" class="header-donate-button icon-btn">
-          <i data-lucide="heart"></i><span class="btn-label"> Quero Ajudar</span>
+  <body>
+    <header class="header">
+      <div class="nav-container">
+        <a href="#home" class="header-logo-link">
+          <img
+            src="./static/img/logo/logo-luz.png"
+            alt="Luz da Esperança"
+            class="header-logo"
+          />
         </a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false"
-          aria-controls="nav-menu">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-        </button>
-      </div>
-    </div>
-  </header>
 
-  <section class="hero" id="home">
-    <div class="container">
-      <img src="./static/img/logo/logo-luz.png" alt="Luz da Esperança" class="hero-logo" />
-      <h1 class="hero-title">
-        Faça parte da<br /><span>Corrente do Bem</span>
-      </h1>
-      <p class="hero-subtitle">
-        Juntos, vamos construir a sede, uma escola e um posto de saúde para as
-        <strong>Obras Sociais Luz da Esperança</strong> — transformando vidas
-        e iluminando comunidades.
-      </p>
-      <div class="button-group">
-        <a href="#donate-now" class="primary-button icon-btn">
-          <i data-lucide="heart"></i> Quero Contribuir
-        </a>
-        <a href="#about" class="secondary-button">Saiba mais</a>
-      </div>
+        <nav class="nav" id="nav-menu" aria-label="Menu principal">
+          <ul class="nav-list">
+            <li><a href="#home" class="nav-link">Início</a></li>
+            <li><a href="#about" class="nav-link">Sobre</a></li>
+            <li><a href="#pillars" class="nav-link">O que construímos</a></li>
+            <li><a href="#video" class="nav-link">Nossa História</a></li>
+            <li><a href="#how-to-help" class="nav-link">Como Participar</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+          </ul>
+        </nav>
 
-      <div class="progress-wrapper">
-        <div class="progress-numbers">
-          <span>Arrecadado até agora<br /><strong id="raised-amount">R$ 0</strong></span>
-          <span class="meta">Meta<br /><strong>R$ 100.000</strong></span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-bar" data-value="5000"></div>
-        </div>
-        <div class="progress-info">
-          <span id="progress-label">0% concluído</span>
+        <div class="nav-actions">
+          <a href="#donate-now" class="header-donate-button icon-btn">
+            <i data-lucide="heart"></i
+            ><span class="btn-label"> Quero Ajudar</span>
+          </a>
+          <button
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title">Sobre a Campanha</h2>
-      <div class="divider"></div>
-      <p class="section-subtitle">
-        A <strong>Corrente do Bem</strong> é uma campanha de arrecadação
-        coletiva baseada na solidariedade. Cada contribuição, por menor que
-        seja, nos aproxima de um sonho que vai beneficiar centenas de
-        famílias.
-      </p>
-      <div class="about-grid">
-        <div class="about-card">
-          <h3><i data-lucide="sprout"></i> Quem Somos</h3>
-          <p>
-            O Centro Espírita e Obras Sociais
-            <strong>Luz da Esperança</strong> é uma instituição sem fins
-            lucrativos dedicada ao apoio comunitário, à educação e ao
-            bem-estar social, guiada pelos princípios do amor e da
-            fraternidade.
-          </p>
+    <section class="hero" id="home">
+      <div class="container">
+        <img
+          src="./static/img/logo/logo-luz.png"
+          alt="Luz da Esperança"
+          class="hero-logo"
+        />
+        <h1 class="hero-title">
+          Faça parte da<br /><span>Corrente do Bem</span>
+        </h1>
+        <p class="hero-subtitle">
+          Juntos, vamos construir a sede, uma escola e um posto de saúde para as
+          <strong>Obras Sociais Luz da Esperança</strong> — transformando vidas
+          e iluminando comunidades.
+        </p>
+        <div class="button-group">
+          <a href="#donate-now" class="primary-button icon-btn">
+            <i data-lucide="heart"></i> Quero Contribuir
+          </a>
+          <a href="#about" class="secondary-button">Saiba mais</a>
         </div>
-        <div class="about-card about-card--mission">
-          <h3><i data-lucide="target"></i> Nossa Missão</h3>
-          <p>
-            Mobilizar a sociedade em torno de um objetivo comum: construir uma
-            infraestrutura que sirva de base para o amparo, a educação e a
-            saúde da comunidade, com total transparência no uso dos recursos.
-          </p>
-        </div>
-      </div>
-      <div class="section-cta">
-        <a href="#donate-now" class="primary-button icon-btn">
-          <i data-lucide="heart"></i> Quero Ajudar
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <section class="section section-alt" id="pillars">
-    <div class="container">
-      <h2 class="section-title">O que vamos construir</h2>
-      <div class="divider"></div>
-      <p class="section-subtitle">
-        Os recursos arrecadados serão destinados integralmente à construção de
-        três pilares essenciais para a comunidade.
-      </p>
-      <div class="pillars-grid">
-        <div class="pillar-card pillar-headquarters">
-          <div class="pillar-icon"><i data-lucide="building-2"></i></div>
-          <div class="pillar-title">Sede das Obras Sociais</div>
-          <div class="pillar-description">
-            O coração da instituição: espaço de acolhimento, administração,
-            oficinas sociais e atendimento à comunidade, funcionando como
-            centro de referência para quem precisa.
+        <div class="progress-wrapper">
+          <div class="progress-numbers">
+            <span
+              >Arrecadado até agora<br /><strong id="raised-amount"
+                >R$ 0</strong
+              ></span
+            >
+            <span class="meta">Meta<br /><strong>R$ 100.000</strong></span>
           </div>
-        </div>
-        <div class="pillar-card pillar-school">
-          <div class="pillar-icon"><i data-lucide="graduation-cap"></i></div>
-          <div class="pillar-title">Escola Comunitária</div>
-          <div class="pillar-description">
-            Um espaço dedicado à educação infantojuvenil, promovendo a
-            transformação social através do conhecimento, do desenvolvimento
-            humano e da formação de cidadãos.
+          <div class="progress-track">
+            <div
+              class="progress-fill"
+              id="progress-bar"
+              data-value="5000"
+            ></div>
           </div>
-        </div>
-        <div class="pillar-card pillar-health">
-          <div class="pillar-icon"><i data-lucide="cross"></i></div>
-          <div class="pillar-title">Posto de Saúde</div>
-          <div class="pillar-description">
-            Unidade de atendimento básico para garantir cuidados de saúde
-            primários, prevenção e bem-estar para as famílias assistidas pela
-            instituição.
+          <div class="progress-info">
+            <span id="progress-label">0% concluído</span>
           </div>
         </div>
       </div>
-      <div class="section-cta">
-        <a href="#donate-now" class="primary-button icon-btn">
-          <i data-lucide="heart"></i> Quero Contribuir
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="video">
-    <div class="container">
-      <h2 class="section-title">Conheça nossa história</h2>
-      <div class="divider"></div>
-      <p class="section-subtitle">
-        Assista e entenda o impacto que a Corrente do Bem pode gerar na vida
-        de centenas de pessoas.
-      </p>
-      <div class="video-wrapper">
-        <!--
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">Sobre a Campanha</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">
+          A <strong>Corrente do Bem</strong> é uma campanha de arrecadação
+          coletiva baseada na solidariedade. Cada contribuição, por menor que
+          seja, nos aproxima de um sonho que vai beneficiar centenas de
+          famílias.
+        </p>
+        <div class="about-grid">
+          <div class="about-card">
+            <h3><i data-lucide="sprout"></i> Quem Somos</h3>
+            <p>
+              O Centro Espírita e Obras Sociais
+              <strong>Luz da Esperança</strong> é uma instituição sem fins
+              lucrativos dedicada ao apoio comunitário, à educação e ao
+              bem-estar social, guiada pelos princípios do amor e da
+              fraternidade.
+            </p>
+          </div>
+          <div class="about-card about-card--mission">
+            <h3><i data-lucide="target"></i> Nossa Missão</h3>
+            <p>
+              Mobilizar a sociedade em torno de um objetivo comum: construir uma
+              infraestrutura que sirva de base para o amparo, a educação e a
+              saúde da comunidade, com total transparência no uso dos recursos.
+            </p>
+          </div>
+        </div>
+        <div class="section-cta">
+          <a href="#donate-now" class="primary-button icon-btn">
+            <i data-lucide="heart"></i> Quero Ajudar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="pillars">
+      <div class="container">
+        <h2 class="section-title">O que vamos construir</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">
+          Os recursos arrecadados serão destinados integralmente à construção de
+          três pilares essenciais para a comunidade.
+        </p>
+        <div class="pillars-grid">
+          <div class="pillar-card pillar-headquarters">
+            <div class="pillar-icon"><i data-lucide="building-2"></i></div>
+            <div class="pillar-title">Sede das Obras Sociais</div>
+            <div class="pillar-description">
+              O coração da instituição: espaço de acolhimento, administração,
+              oficinas sociais e atendimento à comunidade, funcionando como
+              centro de referência para quem precisa.
+            </div>
+          </div>
+          <div class="pillar-card pillar-school">
+            <div class="pillar-icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="pillar-title">Escola Comunitária</div>
+            <div class="pillar-description">
+              Um espaço dedicado à educação infantojuvenil, promovendo a
+              transformação social através do conhecimento, do desenvolvimento
+              humano e da formação de cidadãos.
+            </div>
+          </div>
+          <div class="pillar-card pillar-health">
+            <div class="pillar-icon"><i data-lucide="cross"></i></div>
+            <div class="pillar-title">Posto de Saúde</div>
+            <div class="pillar-description">
+              Unidade de atendimento básico para garantir cuidados de saúde
+              primários, prevenção e bem-estar para as famílias assistidas pela
+              instituição.
+            </div>
+          </div>
+        </div>
+        <div class="section-cta">
+          <a href="#donate-now" class="primary-button icon-btn">
+            <i data-lucide="heart"></i> Quero Contribuir
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <div class="container">
+        <h2 class="section-title">Conheça nossa história</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">
+          Assista e entenda o impacto que a Corrente do Bem pode gerar na vida
+          de centenas de pessoas.
+        </p>
+        <div class="video-wrapper">
+          <!--
         INSTRUCAO: Substitua o src abaixo pelo link do seu video do YouTube.
         Formato: https://www.youtube.com/embed/SEU_ID_DO_VIDEO
         Exemplo: https://www.youtube.com/embed/dQw4w9WgXcQ
       -->
-        <div class="video-placeholder">
-          <i data-lucide="play-circle"></i>
-          <p>
-            Insira aqui o vídeo da campanha.<br />
-            Substitua esta área por um <code>&lt;iframe&gt;</code> do YouTube
-            ou Vimeo.
-          </p>
-          <small>Formato:
-            <code>https://www.youtube.com/embed/ID_DO_VIDEO</code></small>
-        </div>
-        <!-- DESCOMENTE e configure o iframe abaixo quando tiver o link do video:
+          <div class="video-placeholder">
+            <i data-lucide="play-circle"></i>
+            <p>
+              Insira aqui o vídeo da campanha.<br />
+              Substitua esta área por um <code>&lt;iframe&gt;</code> do YouTube
+              ou Vimeo.
+            </p>
+            <small
+              >Formato:
+              <code>https://www.youtube.com/embed/ID_DO_VIDEO</code></small
+            >
+          </div>
+          <!-- DESCOMENTE e configure o iframe abaixo quando tiver o link do video:
       <iframe
         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
         title="Corrente do Bem – Luz da Esperança"
@@ -189,309 +212,378 @@
         allowfullscreen>
       </iframe>
       -->
+        </div>
+        <div class="section-cta">
+          <a href="#donate-now" class="primary-button icon-btn">
+            <i data-lucide="heart"></i> Quero Contribuir
+          </a>
+        </div>
       </div>
-      <div class="section-cta">
-        <a href="#donate-now" class="primary-button icon-btn">
-          <i data-lucide="heart"></i> Quero Contribuir
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section-alt" id="how-to-help">
-    <div class="container">
-      <h2 class="section-title">Como Participar</h2>
-      <div class="divider"></div>
-      <p class="section-subtitle">
-        Em poucos passos simples você já faz parte da Corrente do Bem.
-      </p>
-      <div class="steps-list">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div>
-            <div class="step-title">Escolha como contribuir</div>
-            <div class="step-description">
-              Faça uma doação única ou recorrente via Pix, transferência
-              bancária ou depósito. Qualquer valor é bem-vindo!
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <div>
-            <div class="step-title">Realize sua doação</div>
-            <div class="step-description">
-              Utilize os dados bancários ou a chave Pix disponibilizados
-              abaixo para realizar sua transferência com segurança e rapidez.
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <div>
-            <div class="step-title">Compartilhe a Corrente</div>
-            <div class="step-description">
-              Divulgue para amigos e família! Cada compartilhamento nos ajuda
-              a chegar mais longe e engajar mais pessoas nessa causa.
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number">4</div>
-          <div>
-            <div class="step-title">Acompanhe o progresso</div>
-            <div class="step-description">
-              Você poderá acompanhar de perto cada etapa da construção. Total
-              transparência é o nosso compromisso com cada doador.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section-cta">
-        <a href="#donate-now" class="primary-button icon-btn">
-          <i data-lucide="heart"></i> Quero Ajudar
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="donate-now">
-    <div class="container">
-      <div class="donation-container">
-        <h2 class="section-title icon-btn">
-          <i data-lucide="hand-heart"></i> Faça sua Doação
-        </h2>
+    <section class="section section-alt" id="how-to-help">
+      <div class="container">
+        <h2 class="section-title">Como Participar</h2>
         <div class="divider"></div>
         <p class="section-subtitle">
-          Sua contribuição transforma vidas. Doe o quanto puder — cada real
-          conta!
+          Em poucos passos simples você já faz parte da Corrente do Bem.
         </p>
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <div class="step-title">Escolha como contribuir</div>
+              <div class="step-description">
+                Faça uma doação única ou recorrente via Pix, transferência
+                bancária ou depósito. Qualquer valor é bem-vindo!
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <div class="step-title">Realize sua doação</div>
+              <div class="step-description">
+                Utilize os dados bancários ou a chave Pix disponibilizados
+                abaixo para realizar sua transferência com segurança e rapidez.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <div class="step-title">Compartilhe a Corrente</div>
+              <div class="step-description">
+                Divulgue para amigos e família! Cada compartilhamento nos ajuda
+                a chegar mais longe e engajar mais pessoas nessa causa.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div>
+              <div class="step-title">Acompanhe o progresso</div>
+              <div class="step-description">
+                Você poderá acompanhar de perto cada etapa da construção. Total
+                transparência é o nosso compromisso com cada doador.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-cta">
+          <a href="#donate-now" class="primary-button icon-btn">
+            <i data-lucide="heart"></i> Quero Ajudar
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <div class="pix-key-box">
-          <div class="pix-key-label">Chave Pix</div>
-          <div class="pix-key-value">
-            <span
-              id="pix-key">00020126550014br.gov.bcb.pix0114184633660001620215Corrente_do_Bem5204000053039865802BR5925OBRAS_SOCIAIS_LUZ_DA_ESPE6008PARNAIBA62170513CorrenteDoBem6304314F</span>
-            <button class="copy-button icon-btn" onclick="copyPixKey()">
-              <i data-lucide="copy"></i> Copiar
+    <section class="section" id="donate-now">
+      <div class="container">
+        <div class="donation-container">
+          <h2 class="section-title icon-btn">
+            <i data-lucide="hand-heart"></i> Faça sua Doação
+          </h2>
+          <div class="divider"></div>
+          <p class="section-subtitle">
+            Sua contribuição transforma vidas. Doe o quanto puder — cada real
+            conta!
+          </p>
+
+          <div class="pix-key-box">
+            <div class="pix-key-label">Chave Pix</div>
+            <div class="pix-key-value">
+              <span id="pix-key"
+                >00020126550014br.gov.bcb.pix0114184633660001620215Corrente_do_Bem5204000053039865802BR5925OBRAS_SOCIAIS_LUZ_DA_ESPE6008PARNAIBA62170513CorrenteDoBem6304314F</span
+              >
+              <button class="copy-button icon-btn" onclick="copyPixKey()">
+                <i data-lucide="copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+
+          <div class="bank-details">
+            <span class="icon-info">
+              <i data-lucide="landmark"></i>
+              <strong class="details-label">Dados Bancários</strong> </span
+            ><br />
+            Banco: <strong>Banco do Brasil</strong><br />
+            Agência: <strong>23-X</strong> | Conta: <strong>45684-5</strong
+            ><br />
+            CNPJ: <strong>18.463.366/0001-62</strong><br />
+            Favorecido: <strong>Obras Sociais Luz da Esperança</strong>
+          </div>
+
+          <button class="large-donate-button icon-btn" onclick="openQrModal()">
+            <i data-lucide="qr-code"></i> Ler QR Code
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="testimonials">
+      <div class="container">
+        <h2 class="section-title">Vozes da Comunidade</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">
+          Veja o que dizem quem já faz parte da Corrente do Bem.
+        </p>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "É uma alegria enorme saber que minha contribuição vai ajudar a
+              construir um espaço que vai mudar a vida de tantas famílias. Tenho
+              muito orgulho de fazer parte disso!"
+            </p>
+            <div class="testimonial-author">— Maria S., doadora</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "A transparência da campanha me deu total confiança para
+              contribuir. Que projeto lindo e necessário para nossa comunidade!"
+            </p>
+            <div class="testimonial-author">— João P., apoiador</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "Cada tijolo desse prédio vai ser construído com amor e
+              solidariedade. Me sinto honrado em participar da Corrente do Bem."
+            </p>
+            <div class="testimonial-author">— Ana L., voluntária</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <div class="divider"></div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Como tenho certeza de que a doação chegará ao destino certo?
+              <span class="icon">+</span>
             </button>
+            <div class="faq-answer">
+              Todas as doações são registradas e prestamos contas regularmente
+              através das nossas redes sociais e site. Emitimos recibo para cada
+              doador e os relatórios financeiros são publicados periodicamente.
+            </div>
           </div>
-        </div>
 
-        <div class="bank-details">
-          <span class="icon-info">
-            <i data-lucide="landmark"></i>
-            <strong class="details-label">Dados Bancários</strong> </span><br />
-          Banco: <strong>Banco do Brasil</strong><br />
-          Agência: <strong>23-X</strong> | Conta:
-          <strong>45684-5</strong><br />
-          CNPJ: <strong>18.463.366/0001-62</strong><br />
-          Favorecido: <strong>Obras Sociais Luz da Esperança</strong>
-        </div>
-
-        <button class="large-donate-button icon-btn" onclick="openQrModal()">
-          <i data-lucide="qr-code"></i> Ler QR Code
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="testimonials">
-    <div class="container">
-      <h2 class="section-title">Vozes da Comunidade</h2>
-      <div class="divider"></div>
-      <p class="section-subtitle">
-        Veja o que dizem quem já faz parte da Corrente do Bem.
-      </p>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "É uma alegria enorme saber que minha contribuição vai ajudar a
-            construir um espaço que vai mudar a vida de tantas famílias. Tenho
-            muito orgulho de fazer parte disso!"
-          </p>
-          <div class="testimonial-author">— Maria S., doadora</div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "A transparência da campanha me deu total confiança para
-            contribuir. Que projeto lindo e necessário para nossa comunidade!"
-          </p>
-          <div class="testimonial-author">— João P., apoiador</div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "Cada tijolo desse prédio vai ser construído com amor e
-            solidariedade. Me sinto honrado em participar da Corrente do Bem."
-          </p>
-          <div class="testimonial-author">— Ana L., voluntária</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="container">
-      <h2 class="section-title">Perguntas Frequentes</h2>
-      <div class="divider"></div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Como tenho certeza de que a doação chegará ao destino certo?
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Todas as doações são registradas e prestamos contas regularmente
-            através das nossas redes sociais e site. Emitimos recibo para cada
-            doador e os relatórios financeiros são publicados periodicamente.
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Qual o valor mínimo para doação?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Não existe valor mínimo. Qualquer contribuição, por menor que
+              seja, faz a diferença e é recebida com imensa gratidão. O que
+              importa é o seu gesto de solidariedade!
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Qual o valor mínimo para doação?
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Não existe valor mínimo. Qualquer contribuição, por menor que
-            seja, faz a diferença e é recebida com imensa gratidão. O que
-            importa é o seu gesto de solidariedade!
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Posso fazer uma doação recorrente mensal?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Sim! Doações recorrentes são muito bem-vindas e nos ajudam a
+              planejar melhor a construção. Entre em contato pelo e-mail ou
+              WhatsApp para configurar sua contribuição mensal.
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Posso fazer uma doação recorrente mensal?
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Sim! Doações recorrentes são muito bem-vindas e nos ajudam a
-            planejar melhor a construção. Entre em contato pelo e-mail ou
-            WhatsApp para configurar sua contribuição mensal.
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Posso contribuir de outras formas além da doação financeira?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Com certeza! Você pode contribuir divulgando a campanha, doando
+              materiais de construção, prestando serviços voluntários ou
+              ajudando a mobilizar mais pessoas. Entre em contato e vamos
+              conversar!
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Posso contribuir de outras formas além da doação financeira?
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Com certeza! Você pode contribuir divulgando a campanha, doando
-            materiais de construção, prestando serviços voluntários ou
-            ajudando a mobilizar mais pessoas. Entre em contato e vamos
-            conversar!
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            A instituição é regularizada?
-            <span class="icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Sim. O Centro Espírita e Obras Sociais Luz da Esperança é uma
-            instituição devidamente registrada, com CNPJ ativo e estatuto
-            social público, operando dentro de todas as normas legais
-            vigentes.
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              A instituição é regularizada?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Sim. O Centro Espírita e Obras Sociais Luz da Esperança é uma
+              instituição devidamente registrada, com CNPJ ativo e estatuto
+              social público, operando dentro de todas as normas legais
+              vigentes.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-column footer-column--identity">
-          <img src="./static/img/logo/logo-footer.png" alt="Luz da Esperança" class="footer-logo" />
-          <p>
-            <strong>Centro Espírita e Obras Sociais Luz da Esperança</strong>
-          </p>
-          <p>
-            Campanha <strong>Corrente do Bem</strong> — Construindo futuros
-            com amor e solidariedade.
-          </p>
-        </div>
-
-        <div class="footer-column footer-column--links">
-          <h4 class="footer-column-title">Mapa do site</h4>
-          <a href="#about" class="footer-link"> Sobre a Campanha</a>
-          <a href="#pillars" class="footer-link">O que vamos construir</a>
-          <a href="#video" class="footer-link">Conheça nossa história</a>
-          <a href="#how-to-help" class="footer-link">Como Participar</a>
-          <a href="#testimonials" class="footer-link">Vozes da Comunidade</a>
-          <a href="#faq" class="footer-link">Perguntas Frequentes</a>
-        </div>
-
-        <div class="footer-column footer-column--social">
-          <h4 class="footer-column-title">Fale Conosco</h4>
-          <div class="footer-social-icons">
-            <a href="https://www.instagram.com/luzdaesperanca" target="_blank" rel="noopener" class="social-link"
-              title="Instagram">
-              <img src="./static/img/icones/ig.svg" alt="instagram" class="social-icon" />
-            </a>
-            <a href="https://www.facebook.com/celuzdaesperanca" target="_blank" rel="noopener" class="social-link"
-              title="Facebook">
-              <img src="./static/img/icones/fb.svg" alt="facebook" class="social-icon" />
-            </a>
-            <a href="https://wa.me/86994179346" target="_blank" rel="noopener" class="social-link" title="WhatsApp">
-              <img src="./static/img/icones/wpp.svg" alt="whatsapp" class="social-icon" />
-            </a>
-            <a href="https://www.youtube.com/@luzdaesperanca4310" target="_blank" rel="noopener" class="social-link"
-              title="YouTube">
-              <img src="./static/img/icones/yt.svg" alt="youtube" class="social-icon" />
-            </a>
-            <a href="https://luzdaesperanca.org" target="_blank" rel="noopener" class="social-link" title="Site">
-              <img src="./static/img/icones/site.svg" alt="Site" class="social-icon" />
-            </a>
-            <a href="mailto:luzesperancaparnaiba@gmail.com" class="social-link" title="E-mail">
-              <img src="./static/img/icones/email.svg" alt="e-mail" class="social-icon" />
-            </a>
-          </div>
-          <div class="address">
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column footer-column--identity">
+            <img
+              src="./static/img/logo/logo-footer.png"
+              alt="Luz da Esperança"
+              class="footer-logo"
+            />
             <p>
-              Rua Anhanguera, nº 4170,<br />
-              Bairro Piauí. CEP: 64207-04.0<br />
-              Parnaíba - PI
+              <strong>Centro Espírita e Obras Sociais Luz da Esperança</strong>
+            </p>
+            <p>
+              Campanha <strong>Corrente do Bem</strong> — Construindo futuros
+              com amor e solidariedade.
             </p>
           </div>
+
+          <div class="footer-column footer-column--links">
+            <h4 class="footer-column-title">Mapa do site</h4>
+            <a href="#about" class="footer-link"> Sobre a Campanha</a>
+            <a href="#pillars" class="footer-link">O que vamos construir</a>
+            <a href="#video" class="footer-link">Conheça nossa história</a>
+            <a href="#how-to-help" class="footer-link">Como Participar</a>
+            <a href="#testimonials" class="footer-link">Vozes da Comunidade</a>
+            <a href="#faq" class="footer-link">Perguntas Frequentes</a>
+          </div>
+
+          <div class="footer-column footer-column--social">
+            <h4 class="footer-column-title">Fale Conosco</h4>
+            <div class="footer-social-icons">
+              <a
+                href="https://www.instagram.com/luzdaesperanca"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                title="Instagram"
+              >
+                <img
+                  src="./static/img/icones/ig.svg"
+                  alt="instagram"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://www.facebook.com/celuzdaesperanca"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                title="Facebook"
+              >
+                <img
+                  src="./static/img/icones/fb.svg"
+                  alt="facebook"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://wa.me/86994179346"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                title="WhatsApp"
+              >
+                <img
+                  src="./static/img/icones/wpp.svg"
+                  alt="whatsapp"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://www.youtube.com/@luzdaesperanca4310"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                title="YouTube"
+              >
+                <img
+                  src="./static/img/icones/yt.svg"
+                  alt="youtube"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://luzdaesperanca.org"
+                target="_blank"
+                rel="noopener"
+                class="social-link"
+                title="Site"
+              >
+                <img
+                  src="./static/img/icones/site.svg"
+                  alt="Site"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="mailto:luzesperancaparnaiba@gmail.com"
+                class="social-link"
+                title="E-mail"
+              >
+                <img
+                  src="./static/img/icones/email.svg"
+                  alt="e-mail"
+                  class="social-icon"
+                />
+              </a>
+            </div>
+            <div class="address">
+              <p>
+                Rua Anhanguera, nº 4170,<br />
+                Bairro Piauí. CEP: 64207-04.0<br />
+                Parnaíba - PI
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span class="footer-copy">&copy; <span id="current-year">2026</span> Obras Sociais Luz da Esperança. Todos os
-          direitos
-          reservados.</span>
-        <span class="footer-devs">
-          Desenvolvido por
-          <a href="https://github.com/JosueSerejo" target="_blank" rel="noopener">SerejoDev</a>
-          e
-          <a href="https://github.com/fnetgit" target="_blank" rel="noopener">Fnetgit</a>
-        </span>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span class="footer-copy"
+            >&copy; <span id="current-year">2026</span> Obras Sociais Luz da
+            Esperança. Todos os direitos reservados.</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <div class="qr-modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
+      <div class="qr-modal-box">
+        <button
+          class="qr-modal-close"
+          onclick="closeQrModal()"
+          aria-label="Fechar"
+        >
+          &times;
+        </button>
+        <h3 class="qr-modal-title">Escaneie o QR Code</h3>
+        <img
+          src="./static/img/qrcode/qrcode-luz.jpeg"
+          alt="QR Code Pix - Obras Sociais Luz da Esperança"
+          class="qr-modal-img"
+        />
+        <p class="qr-modal-hint">
+          Aponte a câmera do seu celular para o código acima.
+        </p>
       </div>
     </div>
-  </footer>
 
-  <div class="qr-modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
-    <div class="qr-modal-box">
-      <button class="qr-modal-close" onclick="closeQrModal()" aria-label="Fechar">&times;</button>
-      <h3 class="qr-modal-title">Escaneie o QR Code</h3>
-      <img src="./static/img/qrcode/qrcode-luz.jpeg" alt="QR Code Pix – Obras Sociais Luz da Esperança" class="qr-modal-img" />
-      <p class="qr-modal-hint">Aponte a câmera do seu celular para o código acima.</p>
+    <div class="toast" id="toast">
+      <span class="toast-inner"
+        ><i data-lucide="check-circle"></i> Chave Pix copiada!</span
+      >
     </div>
-  </div>
 
-  <div class="toast" id="toast">
-    <span class="toast-inner"><i data-lucide="check-circle"></i> Chave Pix copiada!</span>
-  </div>
-
-  <script src="./static/js/script.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
-</body>
-
+    <script src="./static/js/script.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
 </html>
