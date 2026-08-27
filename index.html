@@ -302,16 +302,51 @@
             </div>
           </div>
 
-          <div class="bank-details">
-            <span class="icon-info">
+          <div class="bank-details-box">
+            <div class="bank-details-header">
               <i data-lucide="landmark"></i>
-              <strong class="details-label">Dados Bancários</strong> </span
-            ><br />
-            Banco: <strong>Banco do Brasil</strong><br />
-            Agência: <strong>23-X</strong> | Conta: <strong>45684-5</strong
-            ><br />
-            CNPJ: <strong>18.463.366/0001-62</strong><br />
-            Favorecido: <strong>Obras Sociais Luz da Esperança</strong>
+              <strong>Dados Bancários</strong>
+            </div>
+            
+            <div class="bank-detail-row">
+              <span class="bank-detail-label">Banco:</span>
+              <span class="bank-detail-value">Banco do Brasil</span>
+            </div>
+
+            <div class="bank-detail-row">
+              <span class="bank-detail-label">Agência:</span>
+              <div class="bank-detail-value">
+                23-X
+                <button class="copy-btn-small" onclick="copyText('23-X', 'Agência copiada!')" title="Copiar Agência">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="bank-detail-row">
+              <span class="bank-detail-label">Conta:</span>
+              <div class="bank-detail-value">
+                45684-5
+                <button class="copy-btn-small" onclick="copyText('45684-5', 'Conta copiada!')" title="Copiar Conta">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="bank-detail-row">
+              <span class="bank-detail-label">CNPJ:</span>
+              <div class="bank-detail-value">
+                18.463.366/0001-62
+                <button class="copy-btn-small" onclick="copyText('18.463.366/0001-62', 'CNPJ copiado!')" title="Copiar CNPJ">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="bank-detail-row">
+              <span class="bank-detail-label">Favorecido:</span>
+              <span class="bank-detail-value" style="text-align: right;">Obras Sociais Luz da Esperança</span>
+            </div>
           </div>
 
           <button class="large-donate-button icon-btn" onclick="openQrModal()">
@@ -541,9 +576,10 @@
     </div>
 
     <div class="toast" id="toast">
-      <span class="toast-inner"
-        ><i data-lucide="check-circle"></i> Chave Pix copiada!</span
-      >
+      <span class="toast-inner">
+        <i data-lucide="check-circle"></i>
+        <span id="toast-message">Chave Pix copiada!</span>
+      </span>
     </div>
 
     <script src="./static/js/script.js"></script>

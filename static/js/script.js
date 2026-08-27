@@ -18,13 +18,25 @@ window.addEventListener("load", () => {
   }, 300);
 });
 
+/* Copia texto genérico */
+function copyText(text, message) {
+  navigator.clipboard.writeText(text).then(() => showToast(message));
+}
+
 /* Copia a chave Pix */
 function copyPixKey() {
   const pixKey = document.getElementById("pix-key").textContent.trim();
-  navigator.clipboard.writeText(pixKey).then(() => showToast());
+  copyText(pixKey, "Chave Pix copiada!");
 }
-function showToast() {
+
+function showToast(message) {
   const toastElement = document.getElementById("toast");
+  const toastMessageElement = document.getElementById("toast-message");
+  
+  if (message && toastMessageElement) {
+    toastMessageElement.textContent = message;
+  }
+  
   toastElement.classList.add("visible");
   setTimeout(() => toastElement.classList.remove("visible"), 2800);
 }
