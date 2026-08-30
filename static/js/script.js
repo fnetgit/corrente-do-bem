@@ -25,20 +25,20 @@ window.addEventListener("load", updateActiveLink);
 /* ==========================================================================
    Integração com Google Sheets (atualização automática das metas)
    ==========================================================================
-   Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a linha 1
+   Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a row 1
    é o cabeçalho e é ignorada pelo site):
 
        Coluna A          Coluna B      Coluna C (opcional, o site não lê)
        ------------      --------      -----------------------------------
-       Doações           Meta          Total arrecadado (só de referência)
+       Doações           Meta          Total raised (só de referência)
        1000              100000        =SOMA(A2:A1000)   <- fórmula opcional
        500
        250
        ...
 
-   - Coluna A: cada doação lançada vira uma nova linha. O site SOMA todos
+   - Coluna A: cada doação lançada vira uma nova row. O site SOMA todos
      os valores numéricos dessa coluna sozinho (não depende de fórmula).
-   - Coluna B: a meta. Basta preencher uma vez (o site usa o primeiro valor
+   - Coluna B: a goal. Basta preencher uma vez (o site usa o primeiro valor
      numérico que encontrar nessa coluna).
    - Coluna C: totalmente opcional — pode ter uma fórmula de soma só para
      quem estiver preenchendo a planilha acompanhar visualmente. O site
@@ -52,99 +52,99 @@ const SHEET_GID = "0"; // aba (planilha) usada — 0 é a primeira aba
 const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
 /* Converte "R$ 5.000,50", "5000", " 5000 " etc. em número JS (5000.5) */
-function parseValorPlanilha(texto) {
-  if (texto === undefined || texto === null) return null;
-  const limpo = String(texto)
+function parseSpreadsheetValue(text) {
+  if (text === undefined || text === null) return null;
+  const cleaned = String(text)
     .replace(/["']/g, "") // remove aspas que o CSV do Google costuma adicionar
     .replace(/[^\d,.-]/g, "") // remove "R$", espaços, letras
     .replace(/\.(?=\d{3}(\D|$))/g, "") // remove ponto de milhar (1.234 -> 1234)
     .replace(",", "."); // vírgula decimal -> ponto decimal
-  if (limpo.trim() === "") return null;
-  const numero = Number(limpo);
-  return Number.isFinite(numero) ? numero : null;
+  if (cleaned.trim() === "") return null;
+  const number = Number(cleaned);
+  return Number.isFinite(number) ? number : null;
 }
 
-/* Lê a planilha, soma todas as doações lançadas na coluna A e pega a meta
+/* Lê a planilha, soma todas as doações lançadas na coluna A e pega a goal
    na coluna B. Retorna null em caso de falha (sem internet, planilha fora
    do ar, layout inesperado etc.), para a página usar os valores fixos do
    HTML como reserva. */
-async function buscarMetasDaPlanilha() {
+async function fetchSpreadsheetGoals() {
   try {
-    const resposta = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-    if (!resposta.ok)
+    const response = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+    if (!response.ok)
       throw new Error(
-        "Não foi possível acessar a planilha (status " + resposta.status + ")",
+        "Não foi possível acessar a planilha (status " + response.status + ")",
       );
 
-    const csv = await resposta.text();
+    const csv = await response.text();
 
-    // Se o Google devolveu uma página de login/erro em vez do CSV, o texto
+    // Se o Google devolveu uma página de login/error em vez do CSV, o text
     // começa com "<" (HTML). Isso normalmente indica que a planilha ainda
     // não está compartilhada como "Qualquer pessoa com o link".
     if (csv.trim().startsWith("<")) {
       throw new Error(
-        "A resposta não é um CSV (parece uma página HTML de login/erro). " +
+        "A response não é um CSV (parece uma página HTML de login/error). " +
           "Verifique se a planilha está compartilhada como 'Qualquer pessoa com o link - Leitor'.",
       );
     }
 
     console.info("[planilha] CSV recebido:", csv); // ajuda a conferir o que chegou
 
-    const linhas = csv
+    const rows = csv
       .trim()
       .split("\n")
-      .map((linha) => {
+      .map((row) => {
         // Divide por vírgulas, mas ignora vírgulas dentro de aspas duplas
         const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
-        return linha.split(regex);
+        return row.split(regex);
       });
 
-    // A primeira linha é o cabeçalho (títulos das colunas) e é ignorada.
-    const linhasDeDados = linhas.slice(1);
+    // A primeira row é o cabeçalho (títulos das columns) e é ignorada.
+    const dataRows = rows.slice(1);
 
-    let totalArrecadado = 0;
-    let doacoesEncontradas = 0;
-    let meta = null;
+    let totalRaised = 0;
+    let donationsFound = 0;
+    let goal = null;
 
-    linhasDeDados.forEach((colunas) => {
-      const valorDoacao = parseValorPlanilha(colunas[0]); // coluna A
-      if (valorDoacao !== null) {
-        totalArrecadado += valorDoacao;
-        doacoesEncontradas++;
+    dataRows.forEach((columns) => {
+      const donationValue = parseSpreadsheetValue(columns[0]); // coluna A
+      if (donationValue !== null) {
+        totalRaised += donationValue;
+        donationsFound++;
       }
 
-      if (meta === null) {
-        const valorMeta = parseValorPlanilha(colunas[1]); // coluna B
-        if (valorMeta !== null) meta = valorMeta;
+      if (goal === null) {
+        const goalValue = parseSpreadsheetValue(columns[1]); // coluna B
+        if (goalValue !== null) goal = goalValue;
       }
     });
 
-    if (doacoesEncontradas === 0 && meta === null) {
+    if (donationsFound === 0 && goal === null) {
       console.warn(
-        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas colunas A (doações) ou B (meta). Confira o texto logado acima e o layout da planilha.",
+        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas columns A (doações) ou B (goal). Confira o text logado acima e o layout da planilha.",
       );
       return null;
     }
 
     console.info(
-      `[planilha] ${doacoesEncontradas} doação(ões) somada(s) = R$ ${totalArrecadado} | Meta encontrada: R$ ${meta}`,
+      `[planilha] ${donationsFound} doação(ões) somada(s) = R$ ${totalRaised} | Meta encontrada: R$ ${goal}`,
     );
 
     return {
-      arrecadado: doacoesEncontradas > 0 ? totalArrecadado : null,
-      meta,
+      raised: donationsFound > 0 ? totalRaised : null,
+      goal,
     };
-  } catch (erro) {
+  } catch (error) {
     console.warn(
       "Não foi possível atualizar as metas pela planilha. Usando os valores do HTML como reserva.",
-      erro,
+      error,
     );
     return null;
   }
 }
 
 /* Aplica os valores (vindos da planilha ou do HTML) na barra de progresso */
-function renderizarProgresso(raisedAmount, goalAmount) {
+function renderProgress(raisedAmount, goalAmount) {
   const progressBar = document.getElementById("progress-bar");
   const progressPercentage =
     goalAmount > 0 ? Math.round((raisedAmount / goalAmount) * 100) : 0;
@@ -166,7 +166,7 @@ function renderizarProgresso(raisedAmount, goalAmount) {
 
 /* Anima a barra de progresso ao carregar, buscando os valores atualizados
    da planilha do Google Sheets. Se a busca falhar, usa os valores que já
-   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da meta). */
+   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal). */
 window.addEventListener("load", async () => {
   const progressBar = document.getElementById("progress-bar");
   const goalAmountElement = document.getElementById("goal-amount");
@@ -175,22 +175,22 @@ window.addEventListener("load", async () => {
   // Valores de reserva (fallback), lidos do próprio HTML
   let raisedAmount = Number(progressBar.dataset.value || 0);
   let goalAmount =
-    parseValorPlanilha(goalAmountElement?.textContent) || 100_000;
+    parseSpreadsheetValue(goalAmountElement?.textContent) || 100_000;
 
-  const dadosPlanilha = await buscarMetasDaPlanilha();
-  if (dadosPlanilha) {
-    if (dadosPlanilha.arrecadado !== null)
-      raisedAmount = dadosPlanilha.arrecadado;
-    if (dadosPlanilha.meta !== null) goalAmount = dadosPlanilha.meta;
+  const spreadsheetData = await fetchSpreadsheetGoals();
+  if (spreadsheetData) {
+    if (spreadsheetData.raised !== null)
+      raisedAmount = spreadsheetData.raised;
+    if (spreadsheetData.goal !== null) goalAmount = spreadsheetData.goal;
   }
 
   if (currentYearElement)
     currentYearElement.textContent = new Date().getFullYear();
 
-  renderizarProgresso(raisedAmount, goalAmount);
+  renderProgress(raisedAmount, goalAmount);
 });
 
-/* Copia texto genérico */
+/* Copia text genérico */
 function copyText(text, message) {
   navigator.clipboard.writeText(text).then(() => showToast(message));
 }
