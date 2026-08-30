@@ -146,8 +146,16 @@ async function fetchSpreadsheetGoals() {
 /* Aplica os valores (vindos da planilha ou do HTML) na barra de progresso */
 function renderProgress(raisedAmount, goalAmount) {
   const progressBar = document.getElementById("progress-bar");
-  const progressPercentage =
+  let progressPercentage =
     goalAmount > 0 ? Math.round((raisedAmount / goalAmount) * 100) : 0;
+
+  if (raisedAmount > 0 && progressPercentage === 0) {
+    progressPercentage = 1;
+  }
+
+  if (raisedAmount < goalAmount && progressPercentage === 100) {
+    progressPercentage = 99;
+  }
 
   document.getElementById("raised-amount").textContent =
     "R$ " + raisedAmount.toLocaleString("pt-BR");
