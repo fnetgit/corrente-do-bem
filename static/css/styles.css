@@ -990,6 +990,8 @@ a {
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%) translateY(80px);
+    opacity: 0;
+    pointer-events: none;
     background: var(--green);
     color: var(--white);
     padding: .75rem 1.5rem;
@@ -997,13 +999,13 @@ a {
     font-weight: 600;
     font-size: .9rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
-    transition: transform .3s;
-    z-index: 999;
-    pointer-events: none;
+    transition: transform .3s, opacity .3s;
 }
 
 .toast.visible {
     transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ── Responsivo ── */
