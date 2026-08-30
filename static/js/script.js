@@ -25,16 +25,24 @@ window.addEventListener("load", updateActiveLink);
 /* ==========================================================================
    Integração com Google Sheets (atualização automática das metas)
    ==========================================================================
-   A planilha precisa estar compartilhada como "Qualquer pessoa com o link
-   pode visualizar" e conter, em qualquer lugar da primeira aba, duas linhas
-   no formato "rótulo, valor", por exemplo:
+   Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a linha 1
+   é o cabeçalho e é ignorada pelo site):
 
-       Arrecadado , 5000
-       Meta       , 100000
+       Coluna A          Coluna B      Coluna C (opcional, o site não lê)
+       ------------      --------      -----------------------------------
+       Doações           Meta          Total arrecadado (só de referência)
+       1000              100000        =SOMA(A2:A1000)   <- fórmula opcional
+       500
+       250
+       ...
 
-   O rótulo pode estar em qualquer célula da coluna A (ou primeira coluna) e
-   o valor na célula ao lado. Maiúsculas/minúsculas e acentos não importam,
-   basta a palavra conter "arrecad" ou "meta".
+   - Coluna A: cada doação lançada vira uma nova linha. O site SOMA todos
+     os valores numéricos dessa coluna sozinho (não depende de fórmula).
+   - Coluna B: a meta. Basta preencher uma vez (o site usa o primeiro valor
+     numérico que encontrar nessa coluna).
+   - Coluna C: totalmente opcional — pode ter uma fórmula de soma só para
+     quem estiver preenchendo a planilha acompanhar visualmente. O site
+     ignora essa coluna por completo.
 */
 const SHEET_ID = "1b6Bsxzkhhebxk-FPrZzE7Ba5eqS6CrVQiKVZhe1gDEA";
 const SHEET_GID = "0"; // aba (planilha) usada — 0 é a primeira aba
@@ -47,16 +55,19 @@ const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/t
 function parseValorPlanilha(texto) {
   if (texto === undefined || texto === null) return null;
   const limpo = String(texto)
+    .replace(/["']/g, "") // remove aspas que o CSV do Google costuma adicionar
     .replace(/[^\d,.-]/g, "") // remove "R$", espaços, letras
     .replace(/\.(?=\d{3}(\D|$))/g, "") // remove ponto de milhar (1.234 -> 1234)
     .replace(",", "."); // vírgula decimal -> ponto decimal
+  if (limpo.trim() === "") return null;
   const numero = Number(limpo);
   return Number.isFinite(numero) ? numero : null;
 }
 
-/* Busca na planilha os valores de "Arrecadado" e "Meta".
-   Retorna null em caso de falha (sem internet, planilha fora do ar, etc.),
-   para que a página use os valores fixos do HTML como reserva. */
+/* Lê a planilha, soma todas as doações lançadas na coluna A e pega a meta
+   na coluna B. Retorna null em caso de falha (sem internet, planilha fora
+   do ar, layout inesperado etc.), para a página usar os valores fixos do
+   HTML como reserva. */
 async function buscarMetasDaPlanilha() {
   try {
     const resposta = await fetch(SHEET_CSV_URL, { cache: "no-store" });
@@ -81,31 +92,41 @@ async function buscarMetasDaPlanilha() {
       .split("\n")
       .map((linha) => linha.split(","));
 
-    let arrecadado = null;
+    // A primeira linha é o cabeçalho (títulos das colunas) e é ignorada.
+    const linhasDeDados = linhas.slice(1);
+
+    let totalArrecadado = 0;
+    let doacoesEncontradas = 0;
     let meta = null;
 
-    linhas.forEach((colunas) => {
-      const rotulo = (colunas[0] || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") // remove acentos
-        .replace(/["']/g, "") // remove aspas que o CSV do Google costuma adicionar
-        .trim()
-        .toLowerCase();
+    linhasDeDados.forEach((colunas) => {
+      const valorDoacao = parseValorPlanilha(colunas[0]); // coluna A
+      if (valorDoacao !== null) {
+        totalArrecadado += valorDoacao;
+        doacoesEncontradas++;
+      }
 
-      if (!rotulo) return;
-
-      if (rotulo.includes("arrecad")) arrecadado = parseValorPlanilha(colunas[1]);
-      if (rotulo.includes("meta")) meta = parseValorPlanilha(colunas[1]);
+      if (meta === null) {
+        const valorMeta = parseValorPlanilha(colunas[1]); // coluna B
+        if (valorMeta !== null) meta = valorMeta;
+      }
     });
 
-    if (arrecadado === null && meta === null) {
+    if (doacoesEncontradas === 0 && meta === null) {
       console.warn(
-        "[planilha] CSV recebido, mas não encontrei nenhuma linha com 'arrecad' ou 'meta' na coluna A. Confira o texto logado acima."
+        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas colunas A (doações) ou B (meta). Confira o texto logado acima e o layout da planilha."
       );
       return null;
     }
 
-    return { arrecadado, meta };
+    console.info(
+      `[planilha] ${doacoesEncontradas} doação(ões) somada(s) = R$ ${totalArrecadado} | Meta encontrada: R$ ${meta}`
+    );
+
+    return {
+      arrecadado: doacoesEncontradas > 0 ? totalArrecadado : null,
+      meta,
+    };
   } catch (erro) {
     console.warn(
       "Não foi possível atualizar as metas pela planilha. Usando os valores do HTML como reserva.",
