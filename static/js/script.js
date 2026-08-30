@@ -114,14 +114,14 @@ async function fetchSpreadsheetGoals() {
       }
 
       if (goal === null) {
-        const goalValue = parseSpreadsheetValue(columns[1]); // coluna B
+        const goalValue = parseSpreadsheetValue(columns[2]); // column C
         if (goalValue !== null) goal = goalValue;
       }
     });
 
     if (donationsFound === 0 && goal === null) {
       console.warn(
-        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas columns A (doações) ou B (goal). Confira o text logado acima e o layout da planilha.",
+        "[spreadsheet] CSV received, but no numeric value found in columns A (donations) or C (goal). Check the text logged above and the spreadsheet layout.",
       );
       return null;
     }
@@ -179,8 +179,7 @@ window.addEventListener("load", async () => {
 
   const spreadsheetData = await fetchSpreadsheetGoals();
   if (spreadsheetData) {
-    if (spreadsheetData.raised !== null)
-      raisedAmount = spreadsheetData.raised;
+    if (spreadsheetData.raised !== null) raisedAmount = spreadsheetData.raised;
     if (spreadsheetData.goal !== null) goalAmount = spreadsheetData.goal;
   }
 
