@@ -93,7 +93,11 @@ async function buscarMetasDaPlanilha() {
     const linhas = csv
       .trim()
       .split("\n")
-      .map((linha) => linha.split(","));
+      .map((linha) => {
+        // Divide por vírgulas, mas ignora vírgulas dentro de aspas duplas
+        const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
+        return linha.split(regex);
+      });
 
     // A primeira linha é o cabeçalho (títulos das colunas) e é ignorada.
     const linhasDeDados = linhas.slice(1);
