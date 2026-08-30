@@ -71,7 +71,10 @@ function parseValorPlanilha(texto) {
 async function buscarMetasDaPlanilha() {
   try {
     const resposta = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-    if (!resposta.ok) throw new Error("Não foi possível acessar a planilha (status " + resposta.status + ")");
+    if (!resposta.ok)
+      throw new Error(
+        "Não foi possível acessar a planilha (status " + resposta.status + ")",
+      );
 
     const csv = await resposta.text();
 
@@ -81,7 +84,7 @@ async function buscarMetasDaPlanilha() {
     if (csv.trim().startsWith("<")) {
       throw new Error(
         "A resposta não é um CSV (parece uma página HTML de login/erro). " +
-          "Verifique se a planilha está compartilhada como 'Qualquer pessoa com o link - Leitor'."
+          "Verifique se a planilha está compartilhada como 'Qualquer pessoa com o link - Leitor'.",
       );
     }
 
@@ -114,13 +117,13 @@ async function buscarMetasDaPlanilha() {
 
     if (doacoesEncontradas === 0 && meta === null) {
       console.warn(
-        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas colunas A (doações) ou B (meta). Confira o texto logado acima e o layout da planilha."
+        "[planilha] CSV recebido, mas não encontrei nenhum valor numérico nas colunas A (doações) ou B (meta). Confira o texto logado acima e o layout da planilha.",
       );
       return null;
     }
 
     console.info(
-      `[planilha] ${doacoesEncontradas} doação(ões) somada(s) = R$ ${totalArrecadado} | Meta encontrada: R$ ${meta}`
+      `[planilha] ${doacoesEncontradas} doação(ões) somada(s) = R$ ${totalArrecadado} | Meta encontrada: R$ ${meta}`,
     );
 
     return {
@@ -130,7 +133,7 @@ async function buscarMetasDaPlanilha() {
   } catch (erro) {
     console.warn(
       "Não foi possível atualizar as metas pela planilha. Usando os valores do HTML como reserva.",
-      erro
+      erro,
     );
     return null;
   }
@@ -167,11 +170,13 @@ window.addEventListener("load", async () => {
 
   // Valores de reserva (fallback), lidos do próprio HTML
   let raisedAmount = Number(progressBar.dataset.value || 0);
-  let goalAmount = parseValorPlanilha(goalAmountElement?.textContent) || 100_000;
+  let goalAmount =
+    parseValorPlanilha(goalAmountElement?.textContent) || 100_000;
 
   const dadosPlanilha = await buscarMetasDaPlanilha();
   if (dadosPlanilha) {
-    if (dadosPlanilha.arrecadado !== null) raisedAmount = dadosPlanilha.arrecadado;
+    if (dadosPlanilha.arrecadado !== null)
+      raisedAmount = dadosPlanilha.arrecadado;
     if (dadosPlanilha.meta !== null) goalAmount = dadosPlanilha.meta;
   }
 
