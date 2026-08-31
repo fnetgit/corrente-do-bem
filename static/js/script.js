@@ -1,27 +1,26 @@
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-link");
 
-function updateActiveLink() {
-  const scrollPosition = window.scrollY + 150;
+const observerOptions = {
+  root: null,
+  rootMargin: "-150px 0px -50% 0px",
+  threshold: 0
+};
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
-
-    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
       navLinks.forEach((link) => {
         link.classList.remove("active");
-
-        if (link.getAttribute("href") === `#${section.id}`) {
+        if (link.getAttribute("href") === `#${entry.target.id}`) {
           link.classList.add("active");
         }
       });
     }
   });
-}
+}, observerOptions);
 
-window.addEventListener("scroll", updateActiveLink);
-window.addEventListener("load", updateActiveLink);
+sections.forEach((section) => observer.observe(section));
 
 const SHEET_ID = "1b6Bsxzkhhebxk-FPrZzE7Ba5eqS6CrVQiKVZhe1gDEA";
 const SHEET_GID = "0";
@@ -105,8 +104,13 @@ async function fetchSpreadsheetGoals() {
   }
 }
 
+const DOM_progress_bar = document.getElementById("progress-bar");
+const DOM_raised_amount = document.getElementById("raised-amount");
+const DOM_goal_amount = document.getElementById("goal-amount");
+const DOM_progress_label = document.getElementById("progress-label");
+
 function renderProgress(raisedAmount, goalAmount) {
-  const progressBar = document.getElementById("progress-bar");
+  const progressBar = DOM_progress_bar;
   let progressPercentage =
     goalAmount > 0 ? Math.round((raisedAmount / goalAmount) * 100) : 0;
 
@@ -118,15 +122,15 @@ function renderProgress(raisedAmount, goalAmount) {
     progressPercentage = 99;
   }
 
-  document.getElementById("raised-amount").textContent =
-    "R$ " + raisedAmount.toLocaleString("pt-BR");
+  if (DOM_raised_amount)
+    DOM_raised_amount.textContent =
+      "R$ " + raisedAmount.toLocaleString("pt-BR");
 
-  const goalAmountElement = document.getElementById("goal-amount");
-  if (goalAmountElement)
-    goalAmountElement.textContent = "R$ " + goalAmount.toLocaleString("pt-BR");
+  if (DOM_goal_amount)
+    DOM_goal_amount.textContent = "R$ " + goalAmount.toLocaleString("pt-BR");
 
-  document.getElementById("progress-label").textContent =
-    progressPercentage + "% concluído";
+  if (DOM_progress_label)
+    DOM_progress_label.textContent = progressPercentage + "% concluído";
 
   setTimeout(() => {
     progressBar.style.width = Math.min(progressPercentage, 100) + "%";
