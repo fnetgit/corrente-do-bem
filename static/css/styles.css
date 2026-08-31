@@ -190,7 +190,7 @@ a {
     font-size: 0;
 }
 
-.header-donate-button i[data-lucide] {
+.header-donate-button svg[data-lucide] {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
@@ -715,7 +715,7 @@ a {
     transform: scale(1.05);
 }
 
-.copy-btn-small i[data-lucide] {
+.copy-btn-small svg[data-lucide] {
     width: 16px;
     height: 16px;
 }
@@ -935,7 +935,7 @@ a {
     border-color: var(--white);
 }
 
-.footer-official-site i[data-lucide] {
+.footer-official-site svg[data-lucide] {
     width: 14px;
     height: 14px;
 }
@@ -1050,7 +1050,7 @@ a {
     gap: .45rem;
 }
 
-.icon-btn i[data-lucide] {
+.icon-btn svg[data-lucide] {
     width: 18px;
     height: 18px;
     vertical-align: middle;
@@ -1062,24 +1062,24 @@ a {
     justify-content: flex-start;
 }
 
-.pillar-icon i[data-lucide] {
+.pillar-icon svg[data-lucide] {
     width: 40px;
     height: 40px;
 }
 
-.pillar-headquarters .pillar-icon i[data-lucide] {
+.pillar-headquarters .pillar-icon svg[data-lucide] {
     color: var(--coral);
 }
 
-.pillar-school .pillar-icon i[data-lucide] {
+.pillar-school .pillar-icon svg[data-lucide] {
     color: var(--green);
 }
 
-.pillar-health .pillar-icon i[data-lucide] {
+.pillar-health .pillar-icon svg[data-lucide] {
     color: var(--blue);
 }
 
-.about-card h3 i[data-lucide] {
+.about-card h3 svg[data-lucide] {
     width: 20px;
     height: 20px;
     vertical-align: middle;
@@ -1095,7 +1095,7 @@ a {
     border-left-color: var(--green);
 }
 
-.progress-info i[data-lucide] {
+.progress-info svg[data-lucide] {
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -1105,7 +1105,7 @@ a {
     text-align: right;
 }
 
-.pix-key-value i[data-lucide] {
+.pix-key-value svg[data-lucide] {
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -1117,7 +1117,7 @@ a {
     gap: .3rem;
 }
 
-.bank-details i[data-lucide] {
+.bank-details svg[data-lucide] {
     width: 15px;
     height: 15px;
     vertical-align: middle;
@@ -1131,13 +1131,13 @@ a {
     font-size: .92rem;
 }
 
-.video-placeholder i[data-lucide] {
+.video-placeholder svg[data-lucide] {
     width: 56px;
     height: 56px;
     color: #aaa;
 }
 
-.footer-links i[data-lucide] {
+.footer-links svg[data-lucide] {
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -1150,7 +1150,7 @@ a {
     gap: .4rem;
 }
 
-.toast i[data-lucide] {
+.toast svg[data-lucide] {
     width: 17px;
     height: 17px;
 }
@@ -1169,7 +1169,7 @@ a {
     margin-top: .75rem;
 }
 
-.receipt-note i[data-lucide] {
+.receipt-note svg[data-lucide] {
     width: 13px;
     height: 13px;
     vertical-align: middle;
