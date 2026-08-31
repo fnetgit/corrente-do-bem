@@ -22,28 +22,7 @@ function updateActiveLink() {
 
 window.addEventListener("scroll", updateActiveLink);
 window.addEventListener("load", updateActiveLink);
-/* ==========================================================================
-   Integração com Google Sheets (atualização automática das metas)
-   ==========================================================================
-   Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a row 1
-   é o cabeçalho e é ignorada pelo site):
 
-       Coluna A          Coluna B      Coluna C (opcional, o site não lê)
-       ------------      --------      -----------------------------------
-       Doações           Meta          Total raised (só de referência)
-       1000              100000        =SOMA(A2:A1000)   <- fórmula opcional
-       500
-       250
-       ...
-
-   - Coluna A: cada doação lançada vira uma nova row. O site SOMA todos
-     os valores numéricos dessa coluna sozinho (não depende de fórmula).
-   - Coluna B: a goal. Basta preencher uma vez (o site usa o primeiro valor
-     numérico que encontrar nessa coluna).
-   - Coluna C: totalmente opcional — pode ter uma fórmula de soma só para
-     quem estiver preenchendo a planilha acompanhar visualmente. O site
-     ignora essa coluna por completo.
-*/
 const SHEET_ID = "1b6Bsxzkhhebxk-FPrZzE7Ba5eqS6CrVQiKVZhe1gDEA";
 const SHEET_GID = "0"; // aba (planilha) usada — 0 é a primeira aba
 // Endpoint "gviz/tq" (em vez de /export?format=csv): é o recomendado pelo
@@ -65,7 +44,7 @@ function parseSpreadsheetValue(text) {
 }
 
 /* Lê a planilha, soma todas as doações lançadas na coluna A e pega a goal
-   na coluna B. Retorna null em caso de falha (sem internet, planilha fora
+   na coluna C. Retorna null em caso de falha (sem internet, planilha fora
    do ar, layout inesperado etc.), para a página usar os valores fixos do
    HTML como reserva. */
 async function fetchSpreadsheetGoals() {
@@ -172,6 +151,21 @@ function renderProgress(raisedAmount, goalAmount) {
   }, 300);
 }
 
+let lastRaisedAmount = null;
+let lastGoalAmount = null;
+
+async function updateProgressFromSpreadsheet() {
+  const spreadsheetData = await fetchSpreadsheetGoals();
+  if (spreadsheetData) {
+    if (spreadsheetData.raised !== null)
+      lastRaisedAmount = spreadsheetData.raised;
+    if (spreadsheetData.goal !== null) lastGoalAmount = spreadsheetData.goal;
+  }
+  renderProgress(lastRaisedAmount, lastGoalAmount);
+}
+
+const SPREADSHEET_REFRESH_INTERVAL_MS = 30_000;
+
 /* Anima a barra de progresso ao carregar, buscando os valores atualizados
    da planilha do Google Sheets. Se a busca falhar, usa os valores que já
    estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal). */
@@ -181,20 +175,16 @@ window.addEventListener("load", async () => {
   const currentYearElement = document.getElementById("current-year");
 
   // Valores de reserva (fallback), lidos do próprio HTML
-  let raisedAmount = Number(progressBar.dataset.value || 0);
-  let goalAmount =
+  lastRaisedAmount = Number(progressBar.dataset.value || 0);
+  lastGoalAmount =
     parseSpreadsheetValue(goalAmountElement?.textContent) || 100_000;
-
-  const spreadsheetData = await fetchSpreadsheetGoals();
-  if (spreadsheetData) {
-    if (spreadsheetData.raised !== null) raisedAmount = spreadsheetData.raised;
-    if (spreadsheetData.goal !== null) goalAmount = spreadsheetData.goal;
-  }
 
   if (currentYearElement)
     currentYearElement.textContent = new Date().getFullYear();
 
-  renderProgress(raisedAmount, goalAmount);
+  await updateProgressFromSpreadsheet();
+
+  setInterval(updateProgressFromSpreadsheet, SPREADSHEET_REFRESH_INTERVAL_MS);
 });
 
 /* Copia text genérico */
