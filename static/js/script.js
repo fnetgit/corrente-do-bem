@@ -22,28 +22,7 @@ function updateActiveLink() {
 
 window.addEventListener("scroll", updateActiveLink);
 window.addEventListener("load", updateActiveLink);
-/* ==========================================================================
-   Integração com Google Sheets (atualização automática das metas)
-   ==========================================================================
-   Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a row 1
-   é o cabeçalho e é ignorada pelo site):
 
-       Coluna A          Coluna C      Coluna D (opcional, o site não lê)
-       ------------      --------      -----------------------------------
-       Doações           Meta          Total raised (só de referência)
-       1000              100000        =SOMA(A2:A1000)   <- fórmula opcional
-       500
-       250
-       ...
-
-   - Coluna A: cada doação lançada vira uma nova row. O site SOMA todos
-     os valores numéricos dessa coluna sozinho (não depende de fórmula).
-   - Coluna C: a goal. Basta preencher uma vez (o site usa o primeiro valor
-     numérico que encontrar nessa coluna).
-   - Coluna D: totalmente opcional — pode ter uma fórmula de soma só para
-     quem estiver preenchendo a planilha acompanhar visualmente. O site
-     ignora essa coluna por completo.
-*/
 const SHEET_ID = "1b6Bsxzkhhebxk-FPrZzE7Ba5eqS6CrVQiKVZhe1gDEA";
 const SHEET_GID = "0"; // aba (planilha) usada — 0 é a primeira aba
 // Endpoint "gviz/tq" (em vez de /export?format=csv): é o recomendado pelo
@@ -172,33 +151,24 @@ function renderProgress(raisedAmount, goalAmount) {
   }, 300);
 }
 
-/* Guarda os últimos valores de arrecadação/meta conhecidos (fallback do
-   HTML na primeira execução, depois os últimos vindos da planilha). São
-   reaproveitados nas atualizações automáticas seguintes, caso a planilha
-   fique fora do ar momentaneamente numa dessas checagens. */
 let lastRaisedAmount = null;
 let lastGoalAmount = null;
 
-/* Busca os valores atualizados na planilha e redesenha a barra de
-   progresso. Reaproveitada tanto no carregamento da página quanto nas
-   atualizações automáticas periódicas (ver setInterval mais abaixo). */
 async function updateProgressFromSpreadsheet() {
   const spreadsheetData = await fetchSpreadsheetGoals();
   if (spreadsheetData) {
-    if (spreadsheetData.raised !== null) lastRaisedAmount = spreadsheetData.raised;
+    if (spreadsheetData.raised !== null)
+      lastRaisedAmount = spreadsheetData.raised;
     if (spreadsheetData.goal !== null) lastGoalAmount = spreadsheetData.goal;
   }
   renderProgress(lastRaisedAmount, lastGoalAmount);
 }
 
-/* Intervalo entre atualizações automáticas da planilha, sem precisar dar
-   refresh na página (em milissegundos). */
-const SPREADSHEET_REFRESH_INTERVAL_MS = 30_000; // 30 segundos
+const SPREADSHEET_REFRESH_INTERVAL_MS = 30_000;
 
 /* Anima a barra de progresso ao carregar, buscando os valores atualizados
    da planilha do Google Sheets. Se a busca falhar, usa os valores que já
-   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal).
-   Depois disso, passa a checar a planilha de novo a cada 30 segundos. */
+   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal). */
 window.addEventListener("load", async () => {
   const progressBar = document.getElementById("progress-bar");
   const goalAmountElement = document.getElementById("goal-amount");
@@ -214,7 +184,6 @@ window.addEventListener("load", async () => {
 
   await updateProgressFromSpreadsheet();
 
-  // A partir daqui, verifica a planilha de novo a cada 30s, sem refresh.
   setInterval(updateProgressFromSpreadsheet, SPREADSHEET_REFRESH_INTERVAL_MS);
 });
 
