@@ -28,7 +28,7 @@ window.addEventListener("load", updateActiveLink);
    Layout esperado da planilha (primeira aba), a partir da LINHA 2 (a row 1
    é o cabeçalho e é ignorada pelo site):
 
-       Coluna A          Coluna B      Coluna C (opcional, o site não lê)
+       Coluna A          Coluna C      Coluna D (opcional, o site não lê)
        ------------      --------      -----------------------------------
        Doações           Meta          Total raised (só de referência)
        1000              100000        =SOMA(A2:A1000)   <- fórmula opcional
@@ -38,9 +38,9 @@ window.addEventListener("load", updateActiveLink);
 
    - Coluna A: cada doação lançada vira uma nova row. O site SOMA todos
      os valores numéricos dessa coluna sozinho (não depende de fórmula).
-   - Coluna B: a goal. Basta preencher uma vez (o site usa o primeiro valor
+   - Coluna C: a goal. Basta preencher uma vez (o site usa o primeiro valor
      numérico que encontrar nessa coluna).
-   - Coluna C: totalmente opcional — pode ter uma fórmula de soma só para
+   - Coluna D: totalmente opcional — pode ter uma fórmula de soma só para
      quem estiver preenchendo a planilha acompanhar visualmente. O site
      ignora essa coluna por completo.
 */
@@ -65,7 +65,7 @@ function parseSpreadsheetValue(text) {
 }
 
 /* Lê a planilha, soma todas as doações lançadas na coluna A e pega a goal
-   na coluna B. Retorna null em caso de falha (sem internet, planilha fora
+   na coluna C. Retorna null em caso de falha (sem internet, planilha fora
    do ar, layout inesperado etc.), para a página usar os valores fixos do
    HTML como reserva. */
 async function fetchSpreadsheetGoals() {
@@ -172,29 +172,50 @@ function renderProgress(raisedAmount, goalAmount) {
   }, 300);
 }
 
+/* Guarda os últimos valores de arrecadação/meta conhecidos (fallback do
+   HTML na primeira execução, depois os últimos vindos da planilha). São
+   reaproveitados nas atualizações automáticas seguintes, caso a planilha
+   fique fora do ar momentaneamente numa dessas checagens. */
+let lastRaisedAmount = null;
+let lastGoalAmount = null;
+
+/* Busca os valores atualizados na planilha e redesenha a barra de
+   progresso. Reaproveitada tanto no carregamento da página quanto nas
+   atualizações automáticas periódicas (ver setInterval mais abaixo). */
+async function updateProgressFromSpreadsheet() {
+  const spreadsheetData = await fetchSpreadsheetGoals();
+  if (spreadsheetData) {
+    if (spreadsheetData.raised !== null) lastRaisedAmount = spreadsheetData.raised;
+    if (spreadsheetData.goal !== null) lastGoalAmount = spreadsheetData.goal;
+  }
+  renderProgress(lastRaisedAmount, lastGoalAmount);
+}
+
+/* Intervalo entre atualizações automáticas da planilha, sem precisar dar
+   refresh na página (em milissegundos). */
+const SPREADSHEET_REFRESH_INTERVAL_MS = 30_000; // 30 segundos
+
 /* Anima a barra de progresso ao carregar, buscando os valores atualizados
    da planilha do Google Sheets. Se a busca falhar, usa os valores que já
-   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal). */
+   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal).
+   Depois disso, passa a checar a planilha de novo a cada 30 segundos. */
 window.addEventListener("load", async () => {
   const progressBar = document.getElementById("progress-bar");
   const goalAmountElement = document.getElementById("goal-amount");
   const currentYearElement = document.getElementById("current-year");
 
   // Valores de reserva (fallback), lidos do próprio HTML
-  let raisedAmount = Number(progressBar.dataset.value || 0);
-  let goalAmount =
+  lastRaisedAmount = Number(progressBar.dataset.value || 0);
+  lastGoalAmount =
     parseSpreadsheetValue(goalAmountElement?.textContent) || 100_000;
-
-  const spreadsheetData = await fetchSpreadsheetGoals();
-  if (spreadsheetData) {
-    if (spreadsheetData.raised !== null) raisedAmount = spreadsheetData.raised;
-    if (spreadsheetData.goal !== null) goalAmount = spreadsheetData.goal;
-  }
 
   if (currentYearElement)
     currentYearElement.textContent = new Date().getFullYear();
 
-  renderProgress(raisedAmount, goalAmount);
+  await updateProgressFromSpreadsheet();
+
+  // A partir daqui, verifica a planilha de novo a cada 30s, sem refresh.
+  setInterval(updateProgressFromSpreadsheet, SPREADSHEET_REFRESH_INTERVAL_MS);
 });
 
 /* Copia text genérico */
