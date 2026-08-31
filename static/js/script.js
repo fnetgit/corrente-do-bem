@@ -24,29 +24,27 @@ window.addEventListener("scroll", updateActiveLink);
 window.addEventListener("load", updateActiveLink);
 
 const SHEET_ID = "1b6Bsxzkhhebxk-FPrZzE7Ba5eqS6CrVQiKVZhe1gDEA";
-const SHEET_GID = "0"; // aba (planilha) usada — 0 é a primeira aba
+const SHEET_GID = "0";
+
 // Endpoint "gviz/tq" (em vez de /export?format=csv): é o recomendado pelo
 // próprio Google para leitura via JavaScript de páginas externas, pois evita
 // bloqueios de CORS que o endpoint /export costuma sofrer nesse cenário.
 const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
-/* Converte "R$ 5.000,50", "5000", " 5000 " etc. em número JS (5000.5) */
 function parseSpreadsheetValue(text) {
   if (text === undefined || text === null) return null;
   const cleaned = String(text)
     .replace(/["']/g, "") // remove aspas que o CSV do Google costuma adicionar
-    .replace(/[^\d,.-]/g, "") // remove "R$", espaços, letras
-    .replace(/\.(?=\d{3}(\D|$))/g, "") // remove ponto de milhar (1.234 -> 1234)
-    .replace(",", "."); // vírgula decimal -> ponto decimal
+    .replace(/[^\d,.-]/g, "")
+    .replace(/\.(?=\d{3}(\D|$))/g, "")
+    .replace(",", ".");
   if (cleaned.trim() === "") return null;
   const number = Number(cleaned);
   return Number.isFinite(number) ? number : null;
 }
 
-/* Lê a planilha, soma todas as doações lançadas na coluna A e pega a goal
-   na coluna C. Retorna null em caso de falha (sem internet, planilha fora
-   do ar, layout inesperado etc.), para a página usar os valores fixos do
-   HTML como reserva. */
+/* Retorna null em caso de falha de conexão ou layout inesperado, forçando a página
+   a utilizar os valores fixos do HTML como reserva (fallback). */
 async function fetchSpreadsheetGoals() {
   try {
     const response = await fetch(SHEET_CSV_URL, { cache: "no-store" });
@@ -67,18 +65,14 @@ async function fetchSpreadsheetGoals() {
       );
     }
 
-    console.info("[planilha] CSV recebido:", csv); // ajuda a conferir o que chegou
-
     const rows = csv
       .trim()
       .split("\n")
       .map((row) => {
-        // Divide por vírgulas, mas ignora vírgulas dentro de aspas duplas
         const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
         return row.split(regex);
       });
 
-    // A primeira row é o cabeçalho (títulos das columns) e é ignorada.
     const dataRows = rows.slice(1);
 
     let totalRaised = 0;
@@ -86,43 +80,31 @@ async function fetchSpreadsheetGoals() {
     let goal = null;
 
     dataRows.forEach((columns) => {
-      const donationValue = parseSpreadsheetValue(columns[0]); // coluna A
+      const donationValue = parseSpreadsheetValue(columns[0]);
       if (donationValue !== null) {
         totalRaised += donationValue;
         donationsFound++;
       }
 
       if (goal === null) {
-        const goalValue = parseSpreadsheetValue(columns[2]); // column C
+        const goalValue = parseSpreadsheetValue(columns[2]);
         if (goalValue !== null) goal = goalValue;
       }
     });
 
     if (donationsFound === 0 && goal === null) {
-      console.warn(
-        "[spreadsheet] CSV received, but no numeric value found in columns A (donations) or C (goal). Check the text logged above and the spreadsheet layout.",
-      );
       return null;
     }
-
-    console.info(
-      `[planilha] ${donationsFound} doação(ões) somada(s) = R$ ${totalRaised} | Meta encontrada: R$ ${goal}`,
-    );
 
     return {
       raised: donationsFound > 0 ? totalRaised : null,
       goal,
     };
   } catch (error) {
-    console.warn(
-      "Não foi possível atualizar as metas pela planilha. Usando os valores do HTML como reserva.",
-      error,
-    );
     return null;
   }
 }
 
-/* Aplica os valores (vindos da planilha ou do HTML) na barra de progresso */
 function renderProgress(raisedAmount, goalAmount) {
   const progressBar = document.getElementById("progress-bar");
   let progressPercentage =
@@ -166,15 +148,11 @@ async function updateProgressFromSpreadsheet() {
 
 const SPREADSHEET_REFRESH_INTERVAL_MS = 30_000;
 
-/* Anima a barra de progresso ao carregar, buscando os valores atualizados
-   da planilha do Google Sheets. Se a busca falhar, usa os valores que já
-   estão fixos no HTML (data-value do #progress-bar e "R$ 100.000" da goal). */
 window.addEventListener("load", async () => {
   const progressBar = document.getElementById("progress-bar");
   const goalAmountElement = document.getElementById("goal-amount");
   const currentYearElement = document.getElementById("current-year");
 
-  // Valores de reserva (fallback), lidos do próprio HTML
   lastRaisedAmount = Number(progressBar.dataset.value || 0);
   lastGoalAmount =
     parseSpreadsheetValue(goalAmountElement?.textContent) || 100_000;
@@ -187,12 +165,10 @@ window.addEventListener("load", async () => {
   setInterval(updateProgressFromSpreadsheet, SPREADSHEET_REFRESH_INTERVAL_MS);
 });
 
-/* Copia text genérico */
 function copyText(text, message) {
   navigator.clipboard.writeText(text).then(() => showToast(message));
 }
 
-/* Copia a chave Pix */
 function copyPixKey() {
   const pixKey = document.getElementById("pix-key").textContent.trim();
   copyText(pixKey, "Chave Pix copiada!");
@@ -210,7 +186,6 @@ function showToast(message) {
   setTimeout(() => toastElement.classList.remove("visible"), 2800);
 }
 
-/* Menu sanduíche */
 (function () {
   const toggle = document.getElementById("nav-toggle");
   const menu = document.getElementById("nav-menu");
@@ -222,7 +197,6 @@ function showToast(message) {
     toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
   });
 
-  /* Fecha o menu ao clicar em um link */
   menu.querySelectorAll(".nav-link").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.remove("nav--open");
@@ -232,11 +206,11 @@ function showToast(message) {
   });
 })();
 
-/* Modal QR Code */
 function openQrModal() {
   document.getElementById("qr-modal").classList.add("visible");
   document.body.style.overflow = "hidden";
 }
+
 function closeQrModal(event) {
   if (
     event &&
@@ -247,25 +221,44 @@ function closeQrModal(event) {
   document.getElementById("qr-modal").classList.remove("visible");
   document.body.style.overflow = "";
 }
+
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape")
     closeQrModal({ target: document.getElementById("qr-modal") });
 });
 
-/* FAQ acordeão */
 function toggleFaq(button) {
   const answer = button.nextElementSibling;
   const isOpen = button.classList.contains("open");
 
-  /* Fecha todos os itens */
   document.querySelectorAll(".faq-question.open").forEach((faqButton) => {
     faqButton.classList.remove("open");
     faqButton.nextElementSibling.classList.remove("open");
   });
 
-  /* Abre o item clicado se ele estava fechado */
   if (!isOpen) {
     button.classList.add("open");
     answer.classList.add("open");
   }
 }
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href").substring(1);
+    if (!targetId) return;
+
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      e.preventDefault();
+
+      const headerOffset = document.querySelector(".header")?.offsetHeight || 0;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  });
+});
